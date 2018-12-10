@@ -36,7 +36,7 @@ import javafx.stage.StageStyle;
 
         //程序主函数
         public static void main(String[] args) {
-            //if(hasSources()==false){
+            //if(needDownloadSources()==false){
             //  getSources();
             //  unZip();
             //}
@@ -69,12 +69,13 @@ import javafx.stage.StageStyle;
         //解压资源文件
         public static void unZip() {
             
+            
         }
         
-        //判断有没有资源文件，有则告诉main不需再下载资源文件(返回true)
-        public static boolean hasSources() {
+        //判断有没有资源文件，有则告诉main不需再下载资源文件(返回false)
+        public static boolean needDownloadSources() {
             
-            return true;
+            return false;
         }
         
     }
