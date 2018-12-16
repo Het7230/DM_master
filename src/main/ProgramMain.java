@@ -10,6 +10,15 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -20,8 +29,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
     public class ProgramMain extends Application {
-        final String FXML_FILE="file:/D:/DM_master/sources/UI.fxml";
+        final String FXML_FILE="file:/D:/DM_Master_sources-master/sources/UI.fxml";
         final static String SOURCES_URL="https://github.com/Het2002/DM_Master_sources/archive/master.zip";
+        final static String ZIP_FILE_LOCA="D:\\TEMP.ZIP";
         
         
         @Override
@@ -36,9 +46,10 @@ import javafx.stage.StageStyle;
 
         //程序主函数
         public static void main(String[] args) {
+            //暂时放着先
             //if(needDownloadSources()==false){
             //  getSources();
-            //  unZip();
+              unZip();
             //}
             launch(args);
         }
@@ -68,10 +79,43 @@ import javafx.stage.StageStyle;
         
         //解压资源文件
         public static void unZip() {
-            
-            
-        }
-        
+                    long startTime=System.currentTimeMillis();
+                    try {
+                        ZipInputStream Zin=new ZipInputStream(new FileInputStream(ZIP_FILE_LOCA));//输入源zip路径
+                        BufferedInputStream Bin=new BufferedInputStream(Zin);
+                        String Parent="D:\\"; //输出路径（文件夹目录）
+                        File Fout=null;
+                        ZipEntry entry;
+                        try {
+                            while((entry = Zin.getNextEntry())!=null && !entry.isDirectory()){
+                                Fout=new File(Parent,entry.getName());
+                                if(!Fout.exists()){
+                                    (new File(Fout.getParent())).mkdirs();
+                                }
+                                FileOutputStream out=new FileOutputStream(Fout);
+                                BufferedOutputStream Bout=new BufferedOutputStream(out);
+                                int b;
+                                while((b=Bin.read())!=-1){
+                                    Bout.write(b);
+                                }
+                                Bout.close();
+                                out.close();
+                                System.out.println(Fout+"解压成功");
+                            }
+                            Bin.close();
+                            Zin.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    long endTime=System.currentTimeMillis();
+                    System.out.println("耗费时间： "+(endTime-startTime)+" ms");
+                }
+
+
+
         //判断有没有资源文件，有则告诉main不需再下载资源文件(返回false)
         public static boolean needDownloadSources() {
             
