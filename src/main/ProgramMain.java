@@ -1,35 +1,28 @@
 package main;
 
 
-import java.io.BufferedReader;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Properties;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.Enumeration;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
+import java.util.zip.ZipFile;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
     public class ProgramMain extends Application {
         final String FXML_FILE="file:/D:/DM_Master_sources-master/sources/UI.fxml";
+        final static String SOURCES_LOCA="D:\\";
         final static String SOURCES_URL="https://github.com/Het2002/DM_Master_sources/archive/master.zip";
         final static String ZIP_FILE_LOCA="D:\\TEMP.ZIP";
         
@@ -47,16 +40,25 @@ import javafx.stage.StageStyle;
         //程序主函数
         public static void main(String[] args) {
             //暂时放着先
-            //if(needDownloadSources()==false){
-            //  getSources();
-              unZip();
-            //}
+            if(hasSources()==false){
+              
+              try {
+                  getSources();
+                  unZip();
+              }catch(IOException e) {
+                  e.printStackTrace();
+                  System.out.println("[ERROR]无法获取资源或解压文件。");
+                  //trowErrorMessage();
+                  return;
+              }
+              
+            }
             launch(args);
         }
         
         //从gayhub上抓点好东西
-        public static void getSources(){
-            try {
+        public static void getSources()throws IOException{
+
                 URL sourcesURL=new URL(SOURCES_URL);
                 HttpURLConnection connection=(HttpURLConnection)sourcesURL.openConnection();
                 connection.setRequestProperty("User-Agent","Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.36");
@@ -69,57 +71,70 @@ import javafx.stage.StageStyle;
                     fileStream.write(i);
                 fileStream.close();
                 
-                System.out.println("OK!");
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+                System.out.println("[INFO]资源拉取成功。");
+
         }
         
         //解压资源文件
-        public static void unZip() {
-                    long startTime=System.currentTimeMillis();
-                    try {
-                        ZipInputStream Zin=new ZipInputStream(new FileInputStream(ZIP_FILE_LOCA));//输入源zip路径
-                        BufferedInputStream Bin=new BufferedInputStream(Zin);
-                        String Parent="D:\\"; //输出路径（文件夹目录）
-                        File Fout=null;
-                        ZipEntry entry;
-                        try {
-                            while((entry = Zin.getNextEntry())!=null && !entry.isDirectory()){
-                                Fout=new File(Parent,entry.getName());
-                                if(!Fout.exists()){
-                                    (new File(Fout.getParent())).mkdirs();
-                                }
-                                FileOutputStream out=new FileOutputStream(Fout);
-                                BufferedOutputStream Bout=new BufferedOutputStream(out);
-                                int b;
-                                while((b=Bin.read())!=-1){
-                                    Bout.write(b);
-                                }
-                                Bout.close();
-                                out.close();
-                                System.out.println(Fout+"解压成功");
-                            }
-                            Bin.close();
-                            Zin.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                    long endTime=System.currentTimeMillis();
-                    System.out.println("耗费时间： "+(endTime-startTime)+" ms");
-                }
+        public static void unZip() throws IOException {
 
-
-
-        //判断有没有资源文件，有则告诉main不需再下载资源文件(返回false)
-        public static boolean needDownloadSources() {
+            File pathFile = new File(SOURCES_LOCA);
+            File zipFile =new File(ZIP_FILE_LOCA);
             
-            return false;
+            if(!pathFile.exists())
+            {
+              pathFile.mkdirs();
+            }
+            //解决zip文件中有中文目录或者中文文件
+            ZipFile zip = new ZipFile(zipFile, Charset.forName("GBK"));
+            for(Enumeration entries = zip.entries(); entries.hasMoreElements();)
+            {
+              ZipEntry entry = (ZipEntry)entries.nextElement();
+              String zipEntryName = entry.getName();
+              InputStream in = zip.getInputStream(entry);
+              String outPath = (SOURCES_LOCA+zipEntryName).replaceAll("\\*", "/");;
+              //判断路径是否存在,不存在则创建文件路径
+              File file = new File(outPath.substring(0, outPath.lastIndexOf('/')));
+              if(!file.exists())
+              {
+                file.mkdirs();
+              }
+              //判断文件全路径是否为文件夹,如果是上面已经上传,不需要解压
+              if(new File(outPath).isDirectory())
+              {
+                continue;
+              }
+              //输出文件路径信息
+              System.out.println(outPath);
+              OutputStream out = new FileOutputStream(outPath);
+              byte[] buf1 = new byte[1024];
+              int len;
+              while((len=in.read(buf1))>0)
+              {
+                out.write(buf1,0,len);
+              }
+              in.close();
+              out.close();
+            }
+            System.out.println("[INFO]资源解压完毕。");
+                
+        }
+
+
+
+        //判断有没有资源文件，有则告诉main不需再下载资源文件(返回true)
+        public static boolean hasSources() {
+            
+            File UIsources=new File("D:\\DM_Master_sources-master\\sources\\UI.fxml");
+            
+            if(UIsources.exists()==false) {
+                System.out.println("[INFO]没有UI文件，获取资源并解压。");
+                return false;
+                }
+            else {
+                System.out.println("[INFO]有UI文件，直接运行。");
+                return true;
+                }
         }
         
     }
