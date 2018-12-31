@@ -1,6 +1,0 @@
-echo "# DM_master" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git remote add origin https://github.com/Het2002/DM_master.git
-git push -u origin master
