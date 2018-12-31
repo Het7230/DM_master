@@ -4,7 +4,7 @@ import com.jfoenix.controls.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
-
+import javafx.scene.text.Text;
 
 
 public class UICtrl {
@@ -54,21 +54,4 @@ public class UICtrl {
         namePane.setVisible(true);
     }
 
-    @FXML
-    void a(){
-        int aa=0;
-        for(int i=0;i<200;i++) {
-            if(aa==0){
-                chosen_1.setText("aaaaa");
-                System.out.println("asas");
-                aa=1;
-                }else
-             if(aa==1){
-                chosen_1.setText("bbbbb");
-
-                 System.out.println("vvv");
-                aa=0;
-             }
-            }
-        }
 }

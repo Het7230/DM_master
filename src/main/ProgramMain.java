@@ -18,6 +18,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
     public class ProgramMain extends Application {
@@ -29,6 +31,26 @@ import javafx.stage.Stage;
         
         @Override
         public void start(Stage primaryStage) throws IOException {
+
+            if(hasSources()==false){
+                try {
+                    getSources();
+                    unZip();
+                }catch(IOException e) {
+                    e.printStackTrace();
+                    System.out.println("[ERROR]无法获取资源或解压文件。");
+                    trowErrorMessage();
+
+                    Stage secondStage = new Stage();
+                    Label label = new Label("新窗口"); // 放一个标签
+                    StackPane secondPane = new StackPane(label);
+                    Scene secondScene = new Scene(secondPane, 300, 200);
+                    secondStage.setScene(secondScene);
+                    secondStage.show();
+                    return;
+                }
+            }
+
             Parent root = FXMLLoader.load(new URL(FXML_FILE));
             Scene scene = new Scene(root, 1007, 710);
             primaryStage.setTitle("MDmaster 初号姬");
@@ -39,21 +61,11 @@ import javafx.stage.Stage;
 
         //程序主函数
         public static void main(String[] args) {
-            //暂时放着先
-            if(hasSources()==false){
-              
-              try {
-                  getSources();
-                  unZip();
-              }catch(IOException e) {
-                  e.printStackTrace();
-                  System.out.println("[ERROR]无法获取资源或解压文件。");
-                  //trowErrorMessage();
-                  return;
-              }
-              
-            }
             launch(args);
+        }
+
+        public static void trowErrorMessage() {
+
         }
         
         //从gayhub上抓点好东西
@@ -81,38 +93,31 @@ import javafx.stage.Stage;
             File pathFile = new File(SOURCES_LOCA);
             File zipFile =new File(ZIP_FILE_LOCA);
             
-            if(!pathFile.exists())
-            {
-              pathFile.mkdirs();
-            }
+            if(!pathFile.exists()) {pathFile.mkdirs();}
+
             //解决zip文件中有中文目录或者中文文件
             ZipFile zip = new ZipFile(zipFile, Charset.forName("GBK"));
-            for(Enumeration entries = zip.entries(); entries.hasMoreElements();)
-            {
+            for(Enumeration entries = zip.entries(); entries.hasMoreElements();){
               ZipEntry entry = (ZipEntry)entries.nextElement();
               String zipEntryName = entry.getName();
               InputStream in = zip.getInputStream(entry);
               String outPath = (SOURCES_LOCA+zipEntryName).replaceAll("\\*", "/");;
+
               //判断路径是否存在,不存在则创建文件路径
               File file = new File(outPath.substring(0, outPath.lastIndexOf('/')));
-              if(!file.exists())
-              {
-                file.mkdirs();
-              }
+              if(!file.exists()) {file.mkdirs();}
+
               //判断文件全路径是否为文件夹,如果是上面已经上传,不需要解压
-              if(new File(outPath).isDirectory())
-              {
-                continue;
-              }
+              if(new File(outPath).isDirectory()) { continue; }
+
               //输出文件路径信息
-              System.out.println(outPath);
+              System.out.println("[INFO]文件："+outPath);
               OutputStream out = new FileOutputStream(outPath);
               byte[] buf1 = new byte[1024];
               int len;
               while((len=in.read(buf1))>0)
-              {
                 out.write(buf1,0,len);
-              }
+
               in.close();
               out.close();
             }
