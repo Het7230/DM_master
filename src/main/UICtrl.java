@@ -1,10 +1,14 @@
 package main;
 
 import com.jfoenix.controls.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 
 public class UICtrl {
@@ -31,9 +35,28 @@ public class UICtrl {
     public JFXCheckBox fixedTimes;
 
     public JFXSlider chooseTimes;
+    public JFXTextArea inputName;
 
     public Pane numbPane;
     public Pane namePane;
+
+    public Stage stage;
+    public Scene scene;
+
+    private Data data;
+
+    public static final ObservableList names = FXCollections.observableArrayList();
+
+
+    public void setStage(Stage stage){
+        this.stage = stage;
+    }
+    public void setScene(Scene scene){
+        this.scene = scene;
+    }
+    public void setdata(Data data){
+    }
+
 
     //两种选择方式的切换，没什么好说的。
     @FXML
@@ -52,6 +75,18 @@ public class UICtrl {
         numbPane.setVisible(false);
         numbChoose.setSelected(false);
         namePane.setVisible(true);
+        for(int i=0;i<50;i++)
+            names.add("asdfff");
+        nameList.setItems(names);
     }
-
+    @FXML
+    void addName(){
+        data=new Data();
+        data.add(inputName.getText());
+        int i=0;
+        while(data.get(i)!=null){
+            names.add(data.get(i));
+            nameList.setItems(names);
+        }
+    }
 }

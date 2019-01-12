@@ -11,6 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.Enumeration;
+import java.util.TreeMap;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -21,8 +22,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import sun.reflect.generics.tree.Tree;
 
-    public class ProgramMain extends Application {
+public class ProgramMain extends Application {
         final String FXML_FILE="file:/D:/DM_Master_sources-master/sources/UI.fxml";
         final static String SOURCES_LOCA="D:\\";
         final static String SOURCES_URL="https://github.com/Het2002/DM_Master_sources/archive/master.zip";
@@ -42,7 +44,7 @@ import javafx.stage.Stage;
                     trowErrorMessage();
 
                     Stage secondStage = new Stage();
-                    Label label = new Label("新窗口"); // 放一个标签
+                    Label label = new Label("拉取资源文件时出现问题，也许是这里的1网不行/这个系统有什么奇怪的毛病，如果要使用，请去"); // 放一个标签
                     StackPane secondPane = new StackPane(label);
                     Scene secondScene = new Scene(secondPane, 300, 200);
                     secondStage.setScene(secondScene);
@@ -51,10 +53,17 @@ import javafx.stage.Stage;
                 }
             }
 
-            Parent root = FXMLLoader.load(new URL(FXML_FILE));
+            FXMLLoader loader =new FXMLLoader(new URL(FXML_FILE));
+            Parent root = loader.load();
             Scene scene = new Scene(root, 1007, 710);
             primaryStage.setTitle("MDmaster 初号姬");
             primaryStage.setScene(scene);
+
+            //UICtrl controller = loader.getController(); //获取Controller的实例对象//传递primaryStage，scene参数给Controller
+            //controller.setPrimaryStage(primaryStage);
+            //controller.setScene(scene);
+
+
 
             primaryStage.show();
         }
