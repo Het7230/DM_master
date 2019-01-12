@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class Data {
-    private List<String> namelist = new ArrayList();
+    private List<String> namelist = new ArrayList<String>();
     private int listSize = 0;
 
     //------------------------------------------------------
@@ -15,7 +15,7 @@ public class Data {
 
         if(text.contains("。")){
             temp=text.split("。");
-            for(int i=0;i<temp.length-1;i++)
+            for(int i=0;i<temp.length;i++)
                 namelist.add(temp[i]);
         }else {
             namelist.add(text);
@@ -36,6 +36,10 @@ public class Data {
             return;
         namelist.remove(name);
         listSize=namelist.size();
+
+        for (String myString :namelist.toArray(new String[0])) {
+            System.out.println(myString);
+        }
     }
 
     //------------------------------------------------------
@@ -47,6 +51,14 @@ public class Data {
     public String ranDomGet(){
         int i=(int)(0+Math.random()*(namelist.size()));
         return  namelist.get(i);
+    }
+
+    //------------------------------------------------------
+    public String[] getAll(){
+        for (String myString :namelist.toArray(new String[0])) {
+            System.out.println(myString);
+        }
+        return namelist.toArray(new String[0]);
     }
 
 }

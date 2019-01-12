@@ -75,18 +75,21 @@ public class UICtrl {
         numbPane.setVisible(false);
         numbChoose.setSelected(false);
         namePane.setVisible(true);
-        for(int i=0;i<50;i++)
-            names.add("asdfff");
-        nameList.setItems(names);
     }
     @FXML
     void addName(){
         data=new Data();
         data.add(inputName.getText());
-        int i=0;
-        while(data.get(i)!=null){
-            names.add(data.get(i));
-            nameList.setItems(names);
-        }
+
+        names.clear();
+        names.addAll(data.getAll());
+        nameList.setItems(names);
+        nameList.refresh();
+    }
+
+    @FXML
+    void deleteName(){
+        data.delete((String)nameList.getSelectionModel().getSelectedItems().get(0));
+        names.remove((String)nameList.getSelectionModel().getSelectedItems().get(0));
     }
 }

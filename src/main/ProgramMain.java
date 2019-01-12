@@ -11,7 +11,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.Enumeration;
-import java.util.TreeMap;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -22,13 +21,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import sun.reflect.generics.tree.Tree;
+
+import static javafx.stage.StageStyle.*;
 
 public class ProgramMain extends Application {
-        final String FXML_FILE="file:/D:/DM_Master_sources-master/sources/UI.fxml";
-        final static String SOURCES_LOCA="D:\\";
-        final static String SOURCES_URL="https://github.com/Het2002/DM_Master_sources/archive/master.zip";
-        final static String ZIP_FILE_LOCA="D:\\TEMP.ZIP";
+        final static private String FXML_FILE="file:/D:/DM_Master_sources-master/sources/UI.fxml";
+        final static private String SOURCES_LOCA="D:\\";
+        final static private String SOURCES_URL="https://github.com/Het2002/DM_Master_sources/archive/master.zip";
+        final static private String ZIP_FILE_LOCA="D:\\TEMP.ZIP";
         
         
         @Override
@@ -58,6 +58,8 @@ public class ProgramMain extends Application {
             Scene scene = new Scene(root, 1007, 710);
             primaryStage.setTitle("MDmaster 初号姬");
             primaryStage.setScene(scene);
+
+            primaryStage.initStyle(UNIFIED);
 
             //UICtrl controller = loader.getController(); //获取Controller的实例对象//传递primaryStage，scene参数给Controller
             //controller.setPrimaryStage(primaryStage);
