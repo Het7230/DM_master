@@ -59,7 +59,6 @@ public class ProgramMain extends Application {
             primaryStage.setTitle("MDmaster 初号姬");
             primaryStage.setScene(scene);
 
-            primaryStage.initStyle(UNIFIED);
 
             //UICtrl controller = loader.getController(); //获取Controller的实例对象//传递primaryStage，scene参数给Controller
             //controller.setPrimaryStage(primaryStage);

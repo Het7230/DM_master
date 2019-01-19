@@ -43,9 +43,11 @@ public class UICtrl {
     public Stage stage;
     public Scene scene;
 
-    private Data data;
+    private Data data=new Data();
 
     public static final ObservableList names = FXCollections.observableArrayList();
+
+    int chosenTime;
 
 
     public void setStage(Stage stage){
@@ -85,11 +87,21 @@ public class UICtrl {
         names.addAll(data.getAll());
         nameList.setItems(names);
         nameList.refresh();
+
+        data.saveToFile();
     }
 
     @FXML
     void deleteName(){
         data.delete((String)nameList.getSelectionModel().getSelectedItems().get(0));
         names.remove((String)nameList.getSelectionModel().getSelectedItems().get(0));
+        data.saveToFile();
+    }
+
+    @FXML
+    void showNameManger(){
+        names.clear();
+        names.addAll(data.getAll());
+        nameList.setItems(names);
     }
 }
