@@ -29,11 +29,14 @@ public class Data {
             ObjectInputStream ois =new ObjectInputStream(new FileInputStream(dataFile));
             this.nameList=(ArrayList)ois.readObject();
             listSize=nameList.size();
+            System.out.println(listSize);
 
         }catch (Exception e){
             nameList=new ArrayList<>();
             e.printStackTrace();
         }
+
+
 
     }
 
@@ -77,15 +80,12 @@ public class Data {
 
     //------------------------------------------------------
     public String randomGet(){
-        int i=(int)(0+Math.random()*(nameList.size()));
-        return  nameList.get(i);
+        int i=(int)(1+Math.random()*(nameList.size()));
+        return  nameList.get(i-1);
     }
 
     //------------------------------------------------------
     public String[] getAll(){
-        for (String myString :nameList.toArray(new String[0])) {
-            System.out.println(myString);
-        }
         return nameList.toArray(new String[0]);
     }
 

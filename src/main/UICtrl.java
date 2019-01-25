@@ -1,11 +1,10 @@
 package main;
 
 import com.jfoenix.controls.*;
-import javafx.animation.AnimationTimer;
-import javafx.animation.ParallelTransition;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -37,6 +36,13 @@ public class UICtrl {
     AnimationTimer timer =new AnimationTimer() {
         @Override
         public void handle(long now) {
+/*
+            try{
+                Thread.sleep(speed);
+            }catch (Exception e){
+
+            }*/
+
             if(already>=chosenTime){
                 if(!ignoreList.contains(chosenName)||ignorePast){
                     ignoreList.add(chosenName);
@@ -45,6 +51,7 @@ public class UICtrl {
                     singleCycle=0;
                     ignoreTinmesOut=false;
                     stop();
+                    choose.setDisable(false);
                     return;
                 }else
                     ignoreTinmesOut=true;
@@ -56,16 +63,37 @@ public class UICtrl {
             }
 
             if(cycleEnd){
-                times=(int)(1+Math.random()*(chosenTime-already)-1+1+2);
+                times=(int)(1+Math.random()*(chosenTime-already));
                 cycleEnd=false;
-                showWhich=(int)(1+Math.random()*2-1+1);
+                showWhich=(int)(1+Math.random()*2);
             }
+
+            switch (showWhich){
+                case 1:{
+                    chosenName=data.randomGet();
+                    chosen_1.setText(chosenName);
+                    already++;
+                    singleCycle++;
+                    break;
+                }
+
+                case 2:{
+                    chosenName=data.randomGet();
+                    chosen_2.setText(chosenName);
+                    already++;
+                    singleCycle++;
+                    break;
+                }
+            }
+
 
         }
     };
 
 
     public Boolean isNameChoose=true;
+    public short speed;
+
     @FXML
     public Label chosen_1;
     public Label chosen_2;
@@ -87,6 +115,7 @@ public class UICtrl {
     public JFXCheckBox fixedTimes;
 
     public JFXSlider chooseTimes;
+    public JFXSlider speedBar;
     public JFXTextArea inputName;
 
     public Pane numbPane;
@@ -114,7 +143,9 @@ public class UICtrl {
 
     @FXML
     void anPai(){
-
+        choose.setDisable(true);
+        //speed=(short) speedBar.getValue();
+        timer.start();
     }
 
 
@@ -164,29 +195,60 @@ public class UICtrl {
         names.addAll(data.getAll());
         nameList.setItems(names);
 
-        TranslateTransition moveNamePane = new TranslateTransition(Duration.millis(200),namePane);
-        moveNamePane.setFromX(namePane.getLayoutX());
-        moveNamePane.setToX(0);
-        moveNamePane.setCycleCount(1);
-        moveNamePane.setAutoReverse(true);
+        final Timeline timeline = new Timeline();
+        timeline.setCycleCount(1);
+        timeline.setAutoReverse(true);
+        final KeyValue kv = new KeyValue(namePane.layoutXProperty(), 0);
+        final KeyFrame kf = new KeyFrame(Duration.millis(500), kv);
 
-        TranslateTransition moveMainPane = new TranslateTransition(Duration.millis(200),mainPane);
-        moveNamePane.setFromX(0);
-        moveNamePane.setToX(-mainPane.getLayoutX()/2);
-        moveNamePane.setCycleCount(1);
-        moveNamePane.setAutoReverse(true);
 
-        ParallelTransition animation =new ParallelTransition();
-        animation.getChildren().addAll(moveMainPane,moveNamePane);
-        animation.setCycleCount(1);
-        animation.setAutoReverse(true);
-        //animation.play();
-        //moveMainPane.play();
-        moveNamePane.play();
+        final KeyValue kv2 = new KeyValue(mainPane.layoutXProperty(), mainPane.getWidth()/2);
+        final KeyFrame kf2 = new KeyFrame(Duration.millis(400), kv2);
+
+        timeline.getKeyFrames().add(kf);
+        timeline.getKeyFrames().add(kf2);
+
+        timeline.play();
+
+
     }
+
 
     @FXML
     void deleteAllName(){
+
+    }
+
+    @FXML
+    void ignoreOnce_selected(ActionEvent event) {
+
+    }
+
+    @FXML
+    void chooseOnce_selected(ActionEvent event) {
+
+    }
+
+
+    @FXML
+    void randomTimes_selected(ActionEvent event) {
+
+    }
+
+
+    @FXML
+    void fixedTimes_selected(ActionEvent event) {
+
+    }
+
+
+    @FXML
+    void nameChoose_selected(ActionEvent event) {
+
+    }
+
+    @FXML
+    void numbChoose_selected(ActionEvent event) {
 
     }
 }

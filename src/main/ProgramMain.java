@@ -40,6 +40,7 @@ public class ProgramMain extends Application {
                     getSources();
                     unZip();
                 }catch(IOException e) {
+
                     e.printStackTrace();
                     System.out.println("[ERROR]无法获取资源或解压文件。");
                     trowErrorMessage();
@@ -88,17 +89,17 @@ public class ProgramMain extends Application {
                 
                 InputStream stream=connection.getInputStream();
                 FileOutputStream fileStream=new FileOutputStream(new File("D:\\TEMP.ZIP"));
-                
-                for(int i=stream.read();i!=-1;i=stream.read()){
+
+
+                for(int i=stream.read();i!=-1;i=stream.read())
                     fileStream.write(i);
-                    System.out.println(i);
-                }
 
                 fileStream.close();
                 
                 System.out.println("[INFO]资源拉取成功。");
 
         }
+
         
         //解压资源文件
         public static void unZip() throws IOException {
@@ -135,6 +136,7 @@ public class ProgramMain extends Application {
               out.close();
             }
             System.out.println("[INFO]资源解压完毕。");
+            //zipFile.delete();
                 
         }
 
