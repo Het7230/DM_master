@@ -26,6 +26,7 @@ import static javafx.stage.StageStyle.*;
 
 public class ProgramMain extends Application {
         final static private String FXML_FILE="file:/D:/DM_Master_sources-master/sources/UI.fxml";
+        final static private String STYLE_FILE="file:/D:/DM_Master_sources-master/sources/style";
         final static private String SOURCES_LOCA="D:\\";
         final static private String SOURCES_URL="https://github.com/Het2002/DM_Master_sources/archive/master.zip";
         final static private String ZIP_FILE_LOCA="D:\\TEMP.ZIP";
@@ -65,7 +66,6 @@ public class ProgramMain extends Application {
             //controller.setScene(scene);
 
 
-
             primaryStage.show();
         }
 
@@ -89,8 +89,11 @@ public class ProgramMain extends Application {
                 InputStream stream=connection.getInputStream();
                 FileOutputStream fileStream=new FileOutputStream(new File("D:\\TEMP.ZIP"));
                 
-                for(int i=stream.read();i!=-1;i=stream.read())
+                for(int i=stream.read();i!=-1;i=stream.read()){
                     fileStream.write(i);
+                    System.out.println(i);
+                }
+
                 fileStream.close();
                 
                 System.out.println("[INFO]资源拉取成功。");
