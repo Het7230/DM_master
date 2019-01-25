@@ -202,8 +202,8 @@ public class UICtrl {
         final KeyFrame kf = new KeyFrame(Duration.millis(500), kv);
 
 
-        final KeyValue kv2 = new KeyValue(mainPane.layoutXProperty(), mainPane.getWidth()/2);
-        final KeyFrame kf2 = new KeyFrame(Duration.millis(400), kv2);
+        final KeyValue kv2 = new KeyValue(mainPane.layoutXProperty(), -mainPane.getWidth()/2);
+        final KeyFrame kf2 = new KeyFrame(Duration.millis(500), kv2);
 
         timeline.getKeyFrames().add(kf);
         timeline.getKeyFrames().add(kf2);
@@ -211,6 +211,31 @@ public class UICtrl {
         timeline.play();
 
 
+    }
+    
+    @FXML
+    void turnBack() {
+        
+        final Timeline timeline = new Timeline();
+        timeline.setCycleCount(1);
+        timeline.setAutoReverse(true);
+        final KeyValue kv = new KeyValue(namePane.layoutXProperty(), namePane.getWidth());
+        final KeyFrame kf = new KeyFrame(Duration.millis(500), kv);
+
+
+        final KeyValue kv2 = new KeyValue(mainPane.layoutXProperty(), 0);
+        final KeyFrame kf2 = new KeyFrame(Duration.millis(500), kv2);
+
+        timeline.getKeyFrames().add(kf);
+        timeline.getKeyFrames().add(kf2);
+
+        timeline.play();
+    }
+    
+    
+    @FXML
+    void goBack() {
+        
     }
 
 
