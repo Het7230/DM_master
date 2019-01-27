@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -21,6 +22,13 @@ public class UICtrl {
 
     List<String> ignoreList=new ArrayList<>();
 
+    public JFXTextField minNumb;
+    public JFXTextField maxNumb;
+
+    public short minNumber;
+    public short maxNumber;
+
+
     int chosenTime=120;
     int times=0;
     int already=0;
@@ -31,8 +39,9 @@ public class UICtrl {
 
     boolean cycleEnd =true;
     boolean ignoreTinmesOut=false;
-    boolean ignorePast=false;
+    boolean ignorePast=true;
 
+//-------------------------------------------------------------------------------------------
     AnimationTimer timer =new AnimationTimer() {
         @Override
         public void handle(long now) {
@@ -44,12 +53,24 @@ public class UICtrl {
             }*/
 
             if(already>=chosenTime){
-                if(!ignoreList.contains(chosenName)||ignorePast){
+                if(!ignoreList.contains(chosenName)||!ignorePast){
                     ignoreList.add(chosenName);
                     cycleEnd=true;
                     already=0;
                     singleCycle=0;
                     ignoreTinmesOut=false;
+
+                    switch (showWhich){
+                        case 1:{
+                            chosen_1.setText("→"+chosen_1.getText());
+                            break;
+                        }
+                        case 2:{
+                            chosen_2.setText("→"+chosen_2.getText());
+                            break;
+                        }
+                    }
+
                     stop();
                     choose.setDisable(false);
                     return;
@@ -89,7 +110,79 @@ public class UICtrl {
 
         }
     };
+//---------------------------------------------------------------------------------------
+    AnimationTimer numbTimer =new AnimationTimer() {
+        @Override
+        public void handle(long now) {
+/*
+            try{
+                Thread.sleep(speed);
+            }catch (Exception e){
 
+            }*/
+
+            if(already>=chosenTime){
+                if(!ignoreList.contains(chosenName)||!ignorePast){
+                    ignoreList.add(chosenName);
+                    cycleEnd=true;
+                    already=0;
+                    singleCycle=0;
+                    ignoreTinmesOut=false;
+
+                    switch (showWhich){
+                        case 1:{
+                            chosen_1.setText("→"+chosen_1.getText());
+                            break;
+                        }
+                        case 2:{
+                            chosen_2.setText("→"+chosen_2.getText());
+                            break;
+                        }
+                    }
+
+                    stop();
+                    choose.setDisable(false);
+                    return;
+                }else
+                    ignoreTinmesOut=true;
+
+            }
+            if(singleCycle>=times&&ignoreTinmesOut==false){
+                cycleEnd=true;
+                singleCycle=0;
+            }
+
+            if(cycleEnd){
+                times=(int)(1+Math.random()*(chosenTime-already));
+                cycleEnd=false;
+                showWhich=(int)(1+Math.random()*2);
+            }
+
+            switch (showWhich){
+                case 1:{
+                    chosen_1.setText(String.valueOf((int)
+                            (1+Math.random()*(maxNumber-minNumber+1))
+                    ));
+                    chosenName=chosen_1.getText();
+                    already++;
+                    singleCycle++;
+                    break;
+                }
+
+                case 2:{
+                    chosen_2.setText(String.valueOf((int)
+                            (1+Math.random()*(maxNumber-minNumber+1))
+                    ));
+                    chosenName=chosen_2.getText();
+                    already++;
+                    singleCycle++;
+                    break;
+                }
+            }
+
+
+        }
+    };
 
     public Boolean isNameChoose=true;
     public short speed;
@@ -143,9 +236,26 @@ public class UICtrl {
 
     @FXML
     void anPai(){
-        choose.setDisable(true);
-        //speed=(short) speedBar.getValue();
-        timer.start();
+        if(isNameChoose){
+            if(data.isEmpty()){
+                showInfoDialog("哦霍~","现在名单还是空的捏~请前往名单管理添加名字 或 使用数字挑选法。");
+                return;
+             }
+            choose.setDisable(true);
+            //speed=(short) speedBar.getValue();
+            timer.start();
+        }else {
+            try{
+            minNumber=Short.parseShort(minNumb.getText());
+            maxNumber=Short.parseShort(maxNumb.getText());
+            }catch (Exception e){
+                showInfoDialog("嗯哼？","倒是输入个有效的数字啊~");
+                return;
+            }
+            choose.setDisable(true);
+            numbTimer.start();
+        }
+
     }
 
 
@@ -241,17 +351,23 @@ public class UICtrl {
 
     @FXML
     void deleteAllName(){
-
+        data.deleteAll();
+        names.clear();
+        data.saveToFile();
     }
 
     @FXML
     void ignoreOnce_selected(ActionEvent event) {
-
+        ignorePast=true;
+        ignoreOnce.setSelected(true);
+        chooseOnce.setSelected(false);
     }
 
     @FXML
     void chooseOnce_selected(ActionEvent event) {
-
+        ignorePast=false;
+        chooseOnce.setSelected(true);
+        ignoreOnce.setSelected(false);
     }
 
 
@@ -266,14 +382,27 @@ public class UICtrl {
 
     }
 
-
-    @FXML
-    void nameChoose_selected(ActionEvent event) {
-
+    public void showInfoDialog(String header,String message) {
+        JFXDialogLayout content = new JFXDialogLayout();
+        content.setHeading(new Text(header));
+        content.setBody(new Text(message));
+        StackPane tempPane=new StackPane();
+        tempPane.setPrefHeight(mainPane.getPrefHeight());
+        tempPane.setPrefWidth(mainPane.getPrefWidth());
+        mainPane.getChildren().add(tempPane);
+        JFXDialog dialog = new JFXDialog(tempPane,content,JFXDialog.DialogTransition.CENTER);
+        dialog.setPrefHeight(mainPane.getPrefHeight());
+        dialog.setPrefWidth(mainPane.getPrefWidth());
+        JFXButton button = new JFXButton("OK");
+        button.setPrefWidth(50);
+        button.setPrefHeight(30);
+        button.setOnAction((ActionEvent event) -> {
+            dialog.close();
+            mainPane.getChildren().remove(tempPane);
+        });
+        content.setActions(button);
+        dialog.show();
     }
 
-    @FXML
-    void numbChoose_selected(ActionEvent event) {
 
-    }
 }

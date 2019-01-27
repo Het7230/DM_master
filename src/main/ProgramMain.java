@@ -57,9 +57,10 @@ public class ProgramMain extends Application {
 
             FXMLLoader loader =new FXMLLoader(new URL(FXML_FILE));
             Parent root = loader.load();
-            Scene scene = new Scene(root, 1007, 710);
+            Scene scene = new Scene(root, 990, 710);
             primaryStage.setTitle("MDmaster 初号姬");
             primaryStage.setScene(scene);
+            primaryStage.setResizable(false);
 
 
             //UICtrl controller = loader.getController(); //获取Controller的实例对象//传递primaryStage，scene参数给Controller

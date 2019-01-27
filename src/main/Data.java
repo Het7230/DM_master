@@ -104,6 +104,11 @@ public class Data {
 
     }
 
+    //------------------------------------------------------
+    public void deleteAll(){
+        nameList.clear();
+    }
+
 }
 
 
