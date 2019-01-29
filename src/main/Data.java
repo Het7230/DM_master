@@ -80,8 +80,9 @@ public class Data {
 
     //------------------------------------------------------
     public String randomGet(){
-        int i=(int)(1+Math.random()*(nameList.size()));
-        return  nameList.get(i-1);
+        //int i=(int)(1+Math.random()*(nameList.size()));
+        int i=(int)(Math.random()*((nameList.size()-1)));
+        return  nameList.get(i);
     }
 
     //------------------------------------------------------

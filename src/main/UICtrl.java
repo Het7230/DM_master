@@ -5,6 +5,7 @@ import javafx.animation.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -12,6 +13,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
@@ -45,12 +47,12 @@ public class UICtrl {
     AnimationTimer timer =new AnimationTimer() {
         @Override
         public void handle(long now) {
-/*
+
             try{
                 Thread.sleep(speed);
             }catch (Exception e){
 
-            }*/
+            }
 
             if(already>=chosenTime){
                 if(!ignoreList.contains(chosenName)||!ignorePast){
@@ -70,9 +72,8 @@ public class UICtrl {
                             break;
                         }
                     }
-
                     stop();
-                    choose.setDisable(false);
+                    mainPane.setDisable(false);
                     return;
                 }else
                     ignoreTinmesOut=true;
@@ -114,12 +115,12 @@ public class UICtrl {
     AnimationTimer numbTimer =new AnimationTimer() {
         @Override
         public void handle(long now) {
-/*
+
             try{
                 Thread.sleep(speed);
             }catch (Exception e){
 
-            }*/
+            }
 
             if(already>=chosenTime){
                 if(!ignoreList.contains(chosenName)||!ignorePast){
@@ -128,6 +129,7 @@ public class UICtrl {
                     already=0;
                     singleCycle=0;
                     ignoreTinmesOut=false;
+
 
                     switch (showWhich){
                         case 1:{
@@ -139,9 +141,8 @@ public class UICtrl {
                             break;
                         }
                     }
-
                     stop();
-                    choose.setDisable(false);
+                    mainPane.setDisable(false);
                     return;
                 }else
                     ignoreTinmesOut=true;
@@ -160,9 +161,10 @@ public class UICtrl {
 
             switch (showWhich){
                 case 1:{
-                    chosen_1.setText(String.valueOf((int)
-                            (1+Math.random()*(maxNumber-minNumber+1))
+                    chosen_1.setText(String.valueOf(
+                            (int)minNumber+(int)(Math.random()*(maxNumber-minNumber))
                     ));
+
                     chosenName=chosen_1.getText();
                     already++;
                     singleCycle++;
@@ -170,8 +172,8 @@ public class UICtrl {
                 }
 
                 case 2:{
-                    chosen_2.setText(String.valueOf((int)
-                            (1+Math.random()*(maxNumber-minNumber+1))
+                    chosen_2.setText(String.valueOf(
+                            (int)minNumber+(int)(Math.random()*(maxNumber-minNumber))
                     ));
                     chosenName=chosen_2.getText();
                     already++;
@@ -184,6 +186,8 @@ public class UICtrl {
         }
     };
 
+
+
     public Boolean isNameChoose=true;
     public short speed;
 
@@ -195,8 +199,10 @@ public class UICtrl {
     public JFXChipView a;
 
 
-    public JFXButton goBack;
+    public JFXButton goBackButton;
     public JFXButton choose;
+    public JFXButton showNameMangerButton;
+    public  JFXButton recover;
 
     public JFXCheckBox numbChoose;
     public JFXCheckBox nameChoose;
@@ -219,7 +225,14 @@ public class UICtrl {
 
     public Pane mainPane;
 
+    short oldX;
+    short oldY;
+    short oldW;
+    short oldH;
+
     private Data data=new Data();
+
+    public boolean isRandomTimes=true;
 
     public static final ObservableList names = FXCollections.observableArrayList();
 
@@ -234,15 +247,26 @@ public class UICtrl {
     public void setdata(Data data){
     }
 
+
+
     @FXML
     void anPai(){
+
+        if(isRandomTimes)
+            chosenTime=(int)100+(int)(Math.random()*(250-100));
+        else
+            chosenTime=(int)chooseTimes.getValue();
+
+
+        //int s=(int)min+(int)(Math.random()*(max-min));
+
         if(isNameChoose){
             if(data.isEmpty()){
                 showInfoDialog("哦霍~","现在名单还是空的捏~请前往名单管理添加名字 或 使用数字挑选法。");
                 return;
              }
-            choose.setDisable(true);
-            //speed=(short) speedBar.getValue();
+            mainPane.setDisable(true);
+            speed=(short) speedBar.getValue();
             timer.start();
         }else {
             try{
@@ -252,8 +276,9 @@ public class UICtrl {
                 showInfoDialog("嗯哼？","倒是输入个有效的数字啊~");
                 return;
             }
-            choose.setDisable(true);
+            mainPane.setDisable(true);
             numbTimer.start();
+
         }
 
     }
@@ -308,12 +333,12 @@ public class UICtrl {
         final Timeline timeline = new Timeline();
         timeline.setCycleCount(1);
         timeline.setAutoReverse(true);
-        final KeyValue kv = new KeyValue(namePane.layoutXProperty(), 0);
-        final KeyFrame kf = new KeyFrame(Duration.millis(500), kv);
+        final KeyValue kv = new KeyValue(namePane.layoutXProperty(), 0,Interpolator.EASE_OUT);
+        final KeyFrame kf = new KeyFrame(Duration.millis(350), kv);
 
 
-        final KeyValue kv2 = new KeyValue(mainPane.layoutXProperty(), -mainPane.getWidth()/2);
-        final KeyFrame kf2 = new KeyFrame(Duration.millis(500), kv2);
+        final KeyValue kv2 = new KeyValue(mainPane.layoutXProperty(), -mainPane.getWidth()/2,Interpolator.EASE_OUT);
+        final KeyFrame kf2 = new KeyFrame(Duration.millis(350), kv2);
 
         timeline.getKeyFrames().add(kf);
         timeline.getKeyFrames().add(kf2);
@@ -329,12 +354,12 @@ public class UICtrl {
         final Timeline timeline = new Timeline();
         timeline.setCycleCount(1);
         timeline.setAutoReverse(true);
-        final KeyValue kv = new KeyValue(namePane.layoutXProperty(), namePane.getWidth());
-        final KeyFrame kf = new KeyFrame(Duration.millis(500), kv);
+        final KeyValue kv = new KeyValue(namePane.layoutXProperty(), namePane.getWidth(),Interpolator.EASE_OUT);
+        final KeyFrame kf = new KeyFrame(Duration.millis(350), kv);
 
 
-        final KeyValue kv2 = new KeyValue(mainPane.layoutXProperty(), 0);
-        final KeyFrame kf2 = new KeyFrame(Duration.millis(500), kv2);
+        final KeyValue kv2 = new KeyValue(mainPane.layoutXProperty(), 0,Interpolator.EASE_OUT);
+        final KeyFrame kf2 = new KeyFrame(Duration.millis(350), kv2);
 
         timeline.getKeyFrames().add(kf);
         timeline.getKeyFrames().add(kf2);
@@ -344,9 +369,68 @@ public class UICtrl {
     
     
     @FXML
-    void goBack() {
-        
+    void goBack(ActionEvent e) {
+
+        Scene scene=mainPane.getScene();
+        stage=(Stage)scene.getWindow();
+
+        oldX=(short) stage.getX();
+        oldY=(short) stage.getY();
+        oldW=(short)stage.getWidth();
+        oldH=(short)stage.getHeight();
+
+        EventHandler eventHandler=new MoveWindow(stage);
+
+        scene.setOnMousePressed(eventHandler);
+        scene.setOnMouseDragged(eventHandler);
+
+        EventHandler hander=new MoveWindowByTouch(stage);
+
+        scene.setOnTouchPressed(hander);
+        scene.setOnTouchMoved(hander);
+
+        goBackButton.setOnMousePressed(eventHandler);
+        goBackButton.setOnMouseDragged(eventHandler);
+
+        goBackButton.setOnTouchPressed(hander);
+        goBackButton.setOnTouchMoved(hander);
+
+        stage.setAlwaysOnTop(true);
+        //stage.initStyle(StageStyle.UNDECORATED);
+        stage.setWidth(30);
+        stage.setHeight(100);
+        stage.setY(stage.getY()+stage.getHeight()-50);
+        mainPane.setVisible(false);
+        recover.setVisible(true);
+
     }
+
+    @FXML
+    void recoverWindow(){
+        Scene scene=mainPane.getScene();
+        stage=(Stage)scene.getWindow();
+
+        scene.setOnMousePressed(null);
+        scene.setOnMouseDragged(null);
+
+        scene.setOnTouchPressed(null);
+        scene.setOnTouchMoved(null);
+
+        goBackButton.setOnMousePressed(null);
+        goBackButton.setOnMouseDragged(null);
+
+        goBackButton.setOnTouchPressed(null);
+        goBackButton.setOnTouchMoved(null);
+
+        stage.setAlwaysOnTop(false);
+        //stage.initStyle(StageStyle.DECORATED);
+        stage.setWidth(oldW);
+        stage.setHeight(oldH);
+        stage.setY(oldY);
+        mainPane.setVisible(true);
+        recover.setVisible(false);
+    }
+
 
 
     @FXML
@@ -373,13 +457,17 @@ public class UICtrl {
 
     @FXML
     void randomTimes_selected(ActionEvent event) {
-
+        isRandomTimes=true;
+        fixedTimes.setSelected(false);
+        randomTimes.setSelected(true);
     }
 
 
     @FXML
     void fixedTimes_selected(ActionEvent event) {
-
+        isRandomTimes=false;
+        fixedTimes.setSelected(true);
+        randomTimes.setSelected(false);
     }
 
     public void showInfoDialog(String header,String message) {

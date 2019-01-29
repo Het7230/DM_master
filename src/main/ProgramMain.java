@@ -11,6 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.Enumeration;
+import java.util.Random;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -34,7 +35,14 @@ public class ProgramMain extends Application {
         
         @Override
         public void start(Stage primaryStage) throws IOException {
+/*
+            int min=250;
+            int max=100;
 
+            int s=(int)min+(int)(Math.random()*(max-min));
+            for(int i=0;i<200;i++){
+                System.out.println((int)min+(int)(Math.random()*(max-min)));
+            }*/
             if(hasSources()==false){
                 try {
                     getSources();
@@ -57,7 +65,7 @@ public class ProgramMain extends Application {
 
             FXMLLoader loader =new FXMLLoader(new URL(FXML_FILE));
             Parent root = loader.load();
-            Scene scene = new Scene(root, 990, 710);
+            Scene scene = new Scene(root, 990, 700);
             primaryStage.setTitle("MDmaster 初号姬");
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);
