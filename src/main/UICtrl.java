@@ -16,6 +16,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,7 +76,7 @@ public class UICtrl {
                         }
                     }
                     stop();
-                    mainPane.setDisable(false);
+                    controllerPane.setDisable(false);
                     return;
                 }else
                     ignoreTinmesOut=true;
@@ -142,7 +145,7 @@ public class UICtrl {
                         }
                     }
                     stop();
-                    mainPane.setDisable(false);
+                    controllerPane.setDisable(false);
                     return;
                 }else
                     ignoreTinmesOut=true;
@@ -188,7 +191,7 @@ public class UICtrl {
 
 
 
-    public Boolean isNameChoose=true;
+    public boolean isNameChoose=true;
     public short speed;
 
     @FXML
@@ -219,6 +222,7 @@ public class UICtrl {
 
     public Pane numbPane;
     public Pane namePane;
+    public Pane controllerPane;
 
     public Stage stage;
     public Scene scene;
@@ -234,6 +238,8 @@ public class UICtrl {
 
     public boolean isRandomTimes=true;
 
+    public Config config;
+
     public static final ObservableList names = FXCollections.observableArrayList();
 
 
@@ -244,9 +250,65 @@ public class UICtrl {
     public void setScene(Scene scene){
         this.scene = scene;
     }
-    public void setdata(Data data){
+
+
+    public void setConfig(Config config) {
+        this.config = config;
     }
 
+
+    public void setMinNumber(short minNumber) {
+        this.minNumber = minNumber;
+    }
+
+    public void setMaxNumber(short maxNumber) {
+        this.maxNumber = maxNumber;
+    }
+
+    public void setChosenTime(int chosenTime) {
+        this.chosenTime = chosenTime;
+        chooseTimes.setValue(chosenTime);
+    }
+
+    public void setSpeed(short speed) {
+        this.speed = speed;
+        speedBar.setValue(speed);
+    }
+
+
+    public void setChosenTimeHere() {
+        this.chosenTime = (int)chooseTimes.getValue();
+    }
+
+    public void setSpeedHere() {
+        this.speed = (short) speedBar.getValue();
+    }
+
+
+    final static private String CONFIG_FILE="D:\\DM_Master_sources-master\\config";
+    final private File configFile=new File(CONFIG_FILE);
+
+    public int saveConfigToFile(){
+
+        config.setChosenTime(chosenTime);
+        config.setIgnorePast(ignorePast);
+        config.setMaxNumber(maxNumber);
+        config.setMinNumber(minNumber);
+        config.setNameChoose(isNameChoose);
+        config.setSpeed(speed);
+        config.setRandomTimes(isRandomTimes);
+
+        try{
+            ObjectOutputStream oos =new ObjectOutputStream(new FileOutputStream(configFile));
+            oos.writeObject(config);
+            oos.close();
+            return 0;
+        }catch (Exception e){
+            e.printStackTrace();
+            return -1;
+        }
+
+    }
 
 
     @FXML
@@ -265,18 +327,20 @@ public class UICtrl {
                 showInfoDialog("哦霍~","现在名单还是空的捏~请前往名单管理添加名字 或 使用数字挑选法。");
                 return;
              }
-            mainPane.setDisable(true);
-            speed=(short) speedBar.getValue();
+            controllerPane.setDisable(true);
+            speed=(short) (100-speedBar.getValue());
             timer.start();
         }else {
             try{
             minNumber=Short.parseShort(minNumb.getText());
             maxNumber=Short.parseShort(maxNumb.getText());
+
             }catch (Exception e){
                 showInfoDialog("嗯哼？","倒是输入个有效的数字啊~");
                 return;
             }
-            mainPane.setDisable(true);
+            controllerPane.setDisable(true);
+            speed=(short) (100-speedBar.getValue());
             numbTimer.start();
 
         }
@@ -293,6 +357,7 @@ public class UICtrl {
         namePane.setVisible(false);
         nameChoose.setSelected(false);
         numbPane.setVisible(true);
+        showNameMangerButton.setVisible(false);
     }
 
     @FXML
@@ -302,6 +367,7 @@ public class UICtrl {
         numbPane.setVisible(false);
         numbChoose.setSelected(false);
         namePane.setVisible(true);
+        showNameMangerButton.setVisible(true);
     }
     @FXML
     void addName(){
@@ -369,7 +435,7 @@ public class UICtrl {
     
     
     @FXML
-    void goBack(ActionEvent e) {
+    void goBack() {
 
         Scene scene=mainPane.getScene();
         stage=(Stage)scene.getWindow();
@@ -396,7 +462,9 @@ public class UICtrl {
         goBackButton.setOnTouchMoved(hander);
 
         stage.setAlwaysOnTop(true);
-        //stage.initStyle(StageStyle.UNDECORATED);
+
+
+
         stage.setWidth(30);
         stage.setHeight(100);
         stage.setY(stage.getY()+stage.getHeight()-50);
@@ -423,7 +491,8 @@ public class UICtrl {
         goBackButton.setOnTouchMoved(null);
 
         stage.setAlwaysOnTop(false);
-        //stage.initStyle(StageStyle.DECORATED);
+
+
         stage.setWidth(oldW);
         stage.setHeight(oldH);
         stage.setY(oldY);
@@ -441,14 +510,14 @@ public class UICtrl {
     }
 
     @FXML
-    void ignoreOnce_selected(ActionEvent event) {
+    void ignoreOnce_selected() {
         ignorePast=true;
         ignoreOnce.setSelected(true);
         chooseOnce.setSelected(false);
     }
 
     @FXML
-    void chooseOnce_selected(ActionEvent event) {
+    void chooseOnce_selected() {
         ignorePast=false;
         chooseOnce.setSelected(true);
         ignoreOnce.setSelected(false);
@@ -456,7 +525,7 @@ public class UICtrl {
 
 
     @FXML
-    void randomTimes_selected(ActionEvent event) {
+    void randomTimes_selected() {
         isRandomTimes=true;
         fixedTimes.setSelected(false);
         randomTimes.setSelected(true);
@@ -464,7 +533,7 @@ public class UICtrl {
 
 
     @FXML
-    void fixedTimes_selected(ActionEvent event) {
+    void fixedTimes_selected() {
         isRandomTimes=false;
         fixedTimes.setSelected(true);
         randomTimes.setSelected(false);
@@ -484,7 +553,7 @@ public class UICtrl {
         JFXButton button = new JFXButton("OK");
         button.setPrefWidth(50);
         button.setPrefHeight(30);
-        button.setOnAction((ActionEvent event) -> {
+        button.setOnAction((ActionEvent e) -> {
             dialog.close();
             mainPane.getChildren().remove(tempPane);
         });

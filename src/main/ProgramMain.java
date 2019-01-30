@@ -2,26 +2,25 @@ package main;
 
 
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Random;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import static javafx.stage.StageStyle.*;
 
@@ -31,9 +30,11 @@ public class ProgramMain extends Application {
         final static private String SOURCES_LOCA="D:\\";
         final static private String SOURCES_URL="https://github.com/Het2002/DM_Master_sources/archive/master.zip";
         final static private String ZIP_FILE_LOCA="D:\\TEMP.ZIP";
+        final static private String CONFIG_FILE="D:\\DM_Master_sources-master\\config";
         
+        private Config config;
         
-        @Override
+    @Override
         public void start(Stage primaryStage) throws IOException {
 /*
             int min=250;
@@ -59,10 +60,27 @@ public class ProgramMain extends Application {
                     Scene secondScene = new Scene(secondPane, 300, 200);
                     secondStage.setScene(secondScene);
                     secondStage.show();
+
                     return;
                 }
             }
 
+            try{
+                File configFile=new File(CONFIG_FILE);
+                if(configFile.exists()!=true){
+                    configFile.createNewFile();
+                    config= new Config();
+                    return;
+                }
+
+                ObjectInputStream ois =new ObjectInputStream(new FileInputStream(configFile));
+                this.config=(Config) ois.readObject();
+
+            }catch (Exception e){
+                config=new Config();
+                e.printStackTrace();
+            }
+            
             FXMLLoader loader =new FXMLLoader(new URL(FXML_FILE));
             Parent root = loader.load();
             Scene scene = new Scene(root, 990, 700);
@@ -71,12 +89,48 @@ public class ProgramMain extends Application {
             primaryStage.setResizable(false);
 
 
-            //UICtrl controller = loader.getController(); //获取Controller的实例对象//传递primaryStage，scene参数给Controller
-            //controller.setPrimaryStage(primaryStage);
-            //controller.setScene(scene);
-
+            UICtrl controller = loader.getController(); //获取Controller的实例对象//传递primaryStage，scene参数给Controller
+            controller.setStage(primaryStage);
+            controller.setScene(scene);
 
             primaryStage.show();
+
+            controller.setConfig(config);
+
+            primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                    controller.saveConfigToFile();
+                    //primaryStage.close();
+                }
+            });
+
+            if(config.isRandomTimes())
+                controller.randomTimes_selected();
+            else
+                controller.fixedTimes_selected();
+
+
+            if(config.isIgnorePast())
+                controller.ignoreOnce_selected();
+            else
+                controller.chooseOnce_selected();
+
+
+            if(config.isNameChoose())
+                controller.nameChoose_selected();
+            else
+                controller.numbChoose_selected();
+
+            controller.setMaxNumber(config.getMaxNumber());
+            controller.maxNumb.setText(String.valueOf(config.getMaxNumber()));
+            controller.setMinNumber(config.getMinNumber());
+            controller.minNumb.setText(String.valueOf(config.getMinNumber()));
+
+            controller.setSpeed(config.getSpeed());
+            controller.setChosenTime(config.getChosenTime());
+
+
         }
 
         //程序主函数
