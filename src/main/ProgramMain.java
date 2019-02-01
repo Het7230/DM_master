@@ -12,13 +12,24 @@ import java.util.Random;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
+import com.jfoenix.controls.JFXSpinner;
+import com.sun.prism.shader.Solid_TextureYV12_AlphaTest_Loader;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -33,9 +44,46 @@ public class ProgramMain extends Application {
         final static private String CONFIG_FILE="D:\\DM_Master_sources-master\\config";
         
         private Config config;
-        
+
+        Stage stage=new Stage();
+
+        Text text_1=new Text("第一次运行需要加载文件，视网络情况需要一段时间，请耐心等等。：）");
+        Text text_2=new Text("资源文件不大，正常情况下不会用太长时间。");
+        Text text_3=new Text("若网络不可用将尝试使用本地加载。");
+
+        Stage firstStage=new Stage();
+
+        Pane secondPane = new Pane();
+
+        JFXSpinner loading =new JFXSpinner();
+
+        Runnable showRunnable=(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    //Thread.sleep(6000);
+                    getSources();
+                    unZip();
+                    showWindow(firstStage);
+                }catch(IOException e) {
+                    e.printStackTrace();
+                    System.out.println("[ERROR]无法获取资源或解压文件。");
+                    showInfoDialog("啊？","程序无法加载资源文件到这台计算机上，请检查系统是否有关于文件权限的问题，然后重启程序尝试。",secondPane);
+                    loading.setVisible(false);
+                    text_1.setText("资源文件加载失败，请检查系统是否有关于文件权限的问题，然后重启程序尝试。");
+                    text_2.setText("");
+                    text_3.setText("");
+                    return;
+                }catch(Exception e){
+                    System.out.println("asdfygasofuyerfegrufyg");
+                    e.printStackTrace();
+                }
+            }
+        });
+
     @Override
         public void start(Stage primaryStage) throws IOException {
+
 /*
             int min=250;
             int max=100;
@@ -45,32 +93,75 @@ public class ProgramMain extends Application {
                 System.out.println((int)min+(int)(Math.random()*(max-min)));
             }*/
             if(hasSources()==false){
-                try {
-                    getSources();
-                    unZip();
-                }catch(IOException e) {
 
-                    e.printStackTrace();
-                    System.out.println("[ERROR]无法获取资源或解压文件。");
-                    trowErrorMessage();
+                secondPane.setPrefWidth(700);
+                secondPane.setPrefHeight(460);
 
-                    Stage secondStage = new Stage();
-                    Label label = new Label("拉取资源文件时出现问题，也许是这里的1网不行/这个系统有什么奇怪的毛病，如果要使用，请去"); // 放一个标签
-                    StackPane secondPane = new StackPane(label);
-                    Scene secondScene = new Scene(secondPane, 300, 200);
-                    secondStage.setScene(secondScene);
-                    secondStage.show();
+                firstStage.setTitle("MDmaster-资源文件加载");
 
-                    return;
-                }
-            }
+                text_1.setLayoutX(106);
+                text_1.setLayoutY(293);
+
+                text_2.setLayoutX(106);
+                text_2.setLayoutY(322);
+
+                text_3.setLayoutX(106);
+                text_3.setLayoutY(351);
+
+                text_1.setTextAlignment(TextAlignment.CENTER);
+                text_2.setTextAlignment(TextAlignment.CENTER);
+                text_3.setTextAlignment(TextAlignment.CENTER);
+
+
+                text_1.setFont(new Font(16));
+                text_2.setFont(new Font(16));
+                text_3.setFont(new Font(16));
+
+                loading.setLayoutX(258);
+                loading.setLayoutY(50);
+
+                loading.setPrefWidth(200);
+                loading.setPrefHeight(200);
+
+                Scene newScene = new Scene(secondPane, 700, 460);
+
+                secondPane.getChildren().add(loading);
+                secondPane.getChildren().add(text_1);
+                secondPane.getChildren().add(text_2);
+                secondPane.getChildren().add(text_3);
+
+                firstStage.setScene(newScene);
+
+                firstStage.setOnShown(new EventHandler<WindowEvent>() {
+                    @Override
+                    public void handle(WindowEvent event) {
+                        Platform.runLater(showRunnable);
+                    }
+                });
+
+                firstStage.show();
+
+                //showInfoDialog("先等等吧","第一次运行 或 资源文件受损 加载资源文件中，视网络情况需要一段时间，请耐心等等。\n：）",secondPane);
+
+            }else
+                showWindow();
+
+        }
+
+        //程序主函数
+        public static void main(String[] args) {
+            launch(args);
+        }
+
+
+
+        public void showWindow(Stage firstStage){
 
             try{
                 File configFile=new File(CONFIG_FILE);
                 if(configFile.exists()!=true){
                     configFile.createNewFile();
                     config= new Config();
-                    return;
                 }
 
                 ObjectInputStream ois =new ObjectInputStream(new FileInputStream(configFile));
@@ -80,24 +171,107 @@ public class ProgramMain extends Application {
                 config=new Config();
                 e.printStackTrace();
             }
-            
-            FXMLLoader loader =new FXMLLoader(new URL(FXML_FILE));
+
+
+            try {
+                FXMLLoader loader = new FXMLLoader(new URL(FXML_FILE));
+                Parent root = loader.load();
+                Scene scene = new Scene(root, 990, 700);
+                stage.setTitle("MDmaster 初号姬");
+                stage.setScene(scene);
+                stage.setResizable(false);
+                UICtrl controller = loader.getController(); //获取Controller的实例对象//传递primaryStage，scene参数给Controller
+                controller.setStage(stage);
+                controller.setScene(scene);
+                stage.setOnShown(new EventHandler<WindowEvent>() {
+                    @Override
+                    public void handle(WindowEvent event) {
+                        firstStage.close();
+                    }
+                });
+                stage.show();
+                //primaryStage.show();
+
+                //stage.close();
+
+                controller.setConfig(config);
+
+                stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                    @Override
+                    public void handle(WindowEvent event) {
+                        controller.saveConfigToFile();
+                        //primaryStage.close();
+                    }
+                });
+
+                if (config.isRandomTimes())
+                    controller.randomTimes_selected();
+                else
+                    controller.fixedTimes_selected();
+
+
+                if (config.isIgnorePast())
+                    controller.ignoreOnce_selected();
+                else
+                    controller.chooseOnce_selected();
+
+
+                if (config.isNameChoose())
+                    controller.nameChoose_selected();
+                else
+                    controller.numbChoose_selected();
+
+                controller.setMaxNumber(config.getMaxNumber());
+                controller.maxNumb.setText(String.valueOf(config.getMaxNumber()));
+                controller.setMinNumber(config.getMinNumber());
+                controller.minNumb.setText(String.valueOf(config.getMinNumber()));
+
+                controller.setSpeed(config.getSpeed());
+                controller.setChosenTime(config.getChosenTime());
+            }catch (Exception e){
+
+            }
+
+        }
+
+
+    public void showWindow(){
+
+        try{
+            File configFile=new File(CONFIG_FILE);
+            if(configFile.exists()!=true){
+                configFile.createNewFile();
+                config= new Config();
+            }
+
+            ObjectInputStream ois =new ObjectInputStream(new FileInputStream(configFile));
+            this.config=(Config) ois.readObject();
+
+        }catch (Exception e){
+            config=new Config();
+            e.printStackTrace();
+        }
+
+
+        try {
+            FXMLLoader loader = new FXMLLoader(new URL(FXML_FILE));
             Parent root = loader.load();
             Scene scene = new Scene(root, 990, 700);
-            primaryStage.setTitle("MDmaster 初号姬");
-            primaryStage.setScene(scene);
-            primaryStage.setResizable(false);
-
-
+            stage.setTitle("MDmaster 初号姬");
+            stage.setScene(scene);
+            stage.setResizable(false);
             UICtrl controller = loader.getController(); //获取Controller的实例对象//传递primaryStage，scene参数给Controller
-            controller.setStage(primaryStage);
+            controller.setStage(stage);
             controller.setScene(scene);
+            stage.show();
 
-            primaryStage.show();
+            //primaryStage.show();
+
+            //stage.close();
 
             controller.setConfig(config);
 
-            primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 @Override
                 public void handle(WindowEvent event) {
                     controller.saveConfigToFile();
@@ -105,19 +279,19 @@ public class ProgramMain extends Application {
                 }
             });
 
-            if(config.isRandomTimes())
+            if (config.isRandomTimes())
                 controller.randomTimes_selected();
             else
                 controller.fixedTimes_selected();
 
 
-            if(config.isIgnorePast())
+            if (config.isIgnorePast())
                 controller.ignoreOnce_selected();
             else
                 controller.chooseOnce_selected();
 
 
-            if(config.isNameChoose())
+            if (config.isNameChoose())
                 controller.nameChoose_selected();
             else
                 controller.numbChoose_selected();
@@ -129,18 +303,11 @@ public class ProgramMain extends Application {
 
             controller.setSpeed(config.getSpeed());
             controller.setChosenTime(config.getChosenTime());
-
-
-        }
-
-        //程序主函数
-        public static void main(String[] args) {
-            launch(args);
-        }
-
-        public static void trowErrorMessage() {
+        }catch (Exception e){
 
         }
+
+    }
         
         //从gayhub上抓点好东西
         public static void getSources()throws IOException{
@@ -154,9 +321,12 @@ public class ProgramMain extends Application {
                 FileOutputStream fileStream=new FileOutputStream(new File("D:\\TEMP.ZIP"));
 
 
-                for(int i=stream.read();i!=-1;i=stream.read())
+            System.out.println("-------------------------------------------------------");
+                for(int i=stream.read();i!=-1;i=stream.read()){
                     fileStream.write(i);
-
+                    System.out.println(i);
+                }
+                System.out.println("-------------------------------------------------------");
                 fileStream.close();
                 
                 System.out.println("[INFO]资源拉取成功。");
@@ -219,6 +389,31 @@ public class ProgramMain extends Application {
                 return true;
                 }
         }
+
+    public void showInfoDialog(String header,String message,Pane pane) {
+        JFXDialogLayout content = new JFXDialogLayout();
+        content.setHeading(new Text(header));
+        content.setBody(new Text(message));
+        StackPane tempPane=new StackPane();
+        tempPane.setPrefHeight(pane.getPrefHeight());
+        tempPane.setPrefWidth(pane.getPrefWidth());
+        pane.getChildren().add(tempPane);
+
+        JFXDialog dialog = new JFXDialog(tempPane,content,JFXDialog.DialogTransition.TOP);
+        dialog.setPrefHeight(pane.getPrefHeight());
+        dialog.setPrefWidth(pane.getPrefWidth());
+
+        JFXButton button = new JFXButton("OK");
+        button.setPrefWidth(50);
+        button.setPrefHeight(30);
+        button.setOnAction((ActionEvent e) -> {
+            dialog.close();
+            pane.getChildren().remove(tempPane);
+        });
+        content.setActions(button);
+        dialog.show();
+
+    }
         
     }
 

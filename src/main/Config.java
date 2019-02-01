@@ -12,8 +12,8 @@ public class Config implements Serializable {
     private int chosenTime=120;
     private short speed=80;
 
-    private short minNumber=11;
-    private short maxNumber=90;
+    private short minNumber;
+    private short maxNumber;
 
 
     public boolean isIgnorePast() {
@@ -71,6 +71,8 @@ public class Config implements Serializable {
     public void setSpeed(short speed) {
         this.speed = speed;
     }
+
+
 
 }
 

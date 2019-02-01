@@ -25,7 +25,11 @@ import java.util.List;
 
 public class UICtrl {
 
-    List<String> ignoreList=new ArrayList<>();
+    List<String> ignoreNameList=new ArrayList<>();
+    short ignoreNameTimes=0;
+
+    List<String> ignoreNumberList=new ArrayList<>();
+    short ignoreNumberTimes=0;
 
     public JFXTextField minNumb;
     public JFXTextField maxNumb;
@@ -53,17 +57,16 @@ public class UICtrl {
 
             try{
                 Thread.sleep(speed);
-            }catch (Exception e){
-
-            }
+            }catch (Exception e){ }
 
             if(already>=chosenTime){
-                if(!ignoreList.contains(chosenName)||!ignorePast){
-                    ignoreList.add(chosenName);
+                if(!ignoreNameList.contains(chosenName)||!ignorePast){
+                    ignoreNameList.add(chosenName);
                     cycleEnd=true;
                     already=0;
                     singleCycle=0;
                     ignoreTinmesOut=false;
+                    ignoreNameTimes++;
 
                     switch (showWhich){
                         case 1:{
@@ -82,7 +85,7 @@ public class UICtrl {
                     ignoreTinmesOut=true;
 
             }
-            if(singleCycle>=times&&ignoreTinmesOut==false){
+            if(singleCycle>=times&&!ignoreTinmesOut){
                 cycleEnd=true;
                 singleCycle=0;
             }
@@ -121,18 +124,16 @@ public class UICtrl {
 
             try{
                 Thread.sleep(speed);
-            }catch (Exception e){
-
-            }
+            }catch (Exception e){ }
 
             if(already>=chosenTime){
-                if(!ignoreList.contains(chosenName)||!ignorePast){
-                    ignoreList.add(chosenName);
+                if(!ignoreNumberList.contains(chosenName)||!ignorePast){
+                    ignoreNumberList.add(chosenName);
                     cycleEnd=true;
                     already=0;
                     singleCycle=0;
                     ignoreTinmesOut=false;
-
+                    ignoreNameTimes++;
 
                     switch (showWhich){
                         case 1:{
@@ -151,7 +152,7 @@ public class UICtrl {
                     ignoreTinmesOut=true;
 
             }
-            if(singleCycle>=times&&ignoreTinmesOut==false){
+            if(singleCycle>=times&&!ignoreTinmesOut){
                 cycleEnd=true;
                 singleCycle=0;
             }
@@ -298,6 +299,9 @@ public class UICtrl {
         config.setSpeed(speed);
         config.setRandomTimes(isRandomTimes);
 
+        System.out.println(speed);
+        System.out.println(chosenTime);
+
         try{
             ObjectOutputStream oos =new ObjectOutputStream(new FileOutputStream(configFile));
             oos.writeObject(config);
@@ -308,14 +312,18 @@ public class UICtrl {
             return -1;
         }
 
+
+
     }
 
 
     @FXML
     void anPai(){
 
-        if(isRandomTimes)
-            chosenTime=(int)100+(int)(Math.random()*(250-100));
+        if(isRandomTimes) {
+            chosenTime =  100 + (int) (Math.random() * (250 - 100));
+            chooseTimes.setValue(chosenTime);
+        }
         else
             chosenTime=(int)chooseTimes.getValue();
 
@@ -327,18 +335,36 @@ public class UICtrl {
                 showInfoDialog("哦霍~","现在名单还是空的捏~请前往名单管理添加名字 或 使用数字挑选法。");
                 return;
              }
+
+             if(ignoreNameList.size()>=data.getSize()&&ignorePast){
+                 showInfoDialog("啊？","全部名字都被点完啦！\n请多添加几个名字 或 选择“被点过的还要点”。");
+                 return;
+             }
             controllerPane.setDisable(true);
             speed=(short) (100-speedBar.getValue());
             timer.start();
+
         }else {
+
             try{
-            minNumber=Short.parseShort(minNumb.getText());
-            maxNumber=Short.parseShort(maxNumb.getText());
+                minNumber=Short.parseShort(minNumb.getText());
+                maxNumber=Short.parseShort(maxNumb.getText());
+
+                if(maxNumber-minNumber<0){
+                    showInfoDialog("嗯哼？","数字要前小后大啊~");
+                    return;
+                }
+
+                if(ignoreNumberList.size()>=(maxNumber-minNumber) && ignorePast){
+                    showInfoDialog("啊？","全部数字都被点完啦！\n请扩大数字范围 或 选择“被点过的还要点”。");
+                    return;
+                }
 
             }catch (Exception e){
                 showInfoDialog("嗯哼？","倒是输入个有效的数字啊~");
                 return;
             }
+
             controllerPane.setDisable(true);
             speed=(short) (100-speedBar.getValue());
             numbTimer.start();
@@ -399,12 +425,12 @@ public class UICtrl {
         final Timeline timeline = new Timeline();
         timeline.setCycleCount(1);
         timeline.setAutoReverse(true);
-        final KeyValue kv = new KeyValue(namePane.layoutXProperty(), 0,Interpolator.EASE_OUT);
-        final KeyFrame kf = new KeyFrame(Duration.millis(350), kv);
+        final KeyValue kv = new KeyValue(namePane.layoutXProperty(), 0,Interpolator.EASE_BOTH);
+        final KeyFrame kf = new KeyFrame(Duration.millis(400), kv);
 
 
-        final KeyValue kv2 = new KeyValue(mainPane.layoutXProperty(), -mainPane.getWidth()/2,Interpolator.EASE_OUT);
-        final KeyFrame kf2 = new KeyFrame(Duration.millis(350), kv2);
+        final KeyValue kv2 = new KeyValue(mainPane.layoutXProperty(), -mainPane.getWidth()/2,Interpolator.EASE_BOTH);
+        final KeyFrame kf2 = new KeyFrame(Duration.millis(400), kv2);
 
         timeline.getKeyFrames().add(kf);
         timeline.getKeyFrames().add(kf2);
@@ -420,12 +446,12 @@ public class UICtrl {
         final Timeline timeline = new Timeline();
         timeline.setCycleCount(1);
         timeline.setAutoReverse(true);
-        final KeyValue kv = new KeyValue(namePane.layoutXProperty(), namePane.getWidth(),Interpolator.EASE_OUT);
-        final KeyFrame kf = new KeyFrame(Duration.millis(350), kv);
+        final KeyValue kv = new KeyValue(namePane.layoutXProperty(), namePane.getWidth(),Interpolator.EASE_BOTH);
+        final KeyFrame kf = new KeyFrame(Duration.millis(400), kv);
 
 
-        final KeyValue kv2 = new KeyValue(mainPane.layoutXProperty(), 0,Interpolator.EASE_OUT);
-        final KeyFrame kf2 = new KeyFrame(Duration.millis(350), kv2);
+        final KeyValue kv2 = new KeyValue(mainPane.layoutXProperty(), 0,Interpolator.EASE_BOTH);
+        final KeyFrame kf2 = new KeyFrame(Duration.millis(400), kv2);
 
         timeline.getKeyFrames().add(kf);
         timeline.getKeyFrames().add(kf2);
@@ -462,9 +488,11 @@ public class UICtrl {
         goBackButton.setOnTouchMoved(hander);
 
         stage.setAlwaysOnTop(true);
-
-
-
+/*
+        stage.close();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.show();
+*/
         stage.setWidth(30);
         stage.setHeight(100);
         stage.setY(stage.getY()+stage.getHeight()-50);
@@ -491,7 +519,12 @@ public class UICtrl {
         goBackButton.setOnTouchMoved(null);
 
         stage.setAlwaysOnTop(false);
-
+/*
+        stage.close();
+        stage.initStyle(StageStyle.DECORATED);
+        stage.show();
+*/
+        stage.setResizable(false);
 
         stage.setWidth(oldW);
         stage.setHeight(oldH);
@@ -547,7 +580,7 @@ public class UICtrl {
         tempPane.setPrefHeight(mainPane.getPrefHeight());
         tempPane.setPrefWidth(mainPane.getPrefWidth());
         mainPane.getChildren().add(tempPane);
-        JFXDialog dialog = new JFXDialog(tempPane,content,JFXDialog.DialogTransition.CENTER);
+        JFXDialog dialog = new JFXDialog(tempPane,content,JFXDialog.DialogTransition.TOP);
         dialog.setPrefHeight(mainPane.getPrefHeight());
         dialog.setPrefWidth(mainPane.getPrefWidth());
         JFXButton button = new JFXButton("OK");

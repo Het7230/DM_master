@@ -62,6 +62,11 @@ public class Data {
     }
 
     //------------------------------------------------------
+    public int getSize(){
+        return listSize;
+    }
+
+    //------------------------------------------------------
     public void delete(String name){
         if(nameList.isEmpty())
             return;
