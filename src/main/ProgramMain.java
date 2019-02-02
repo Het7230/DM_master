@@ -25,6 +25,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
@@ -37,72 +38,92 @@ import org.apache.commons.codec.binary.Hex;
 import static javafx.stage.StageStyle.*;
 
 public class ProgramMain extends Application {
-        final static private String FXML_FILE="file:/D:/DM_Master_sources-master/sources/UI.fxml";
-        final static private String IAMGE_FILE="file:/D:/DM_Master_sources-master/sources/img1.png";
-        final static private String BACKIAMGE_FILE="file:/D:/DM_Master_sources-master/sources/back.png";
+    final static private String FXML_FILE="file:/D:/DM_Master_sources-master/sources/UI";
 
-        final static private String FXML_FILE_MD5="4443e5d25340d3b7b43cd233635a500d";
-        final static private String IAMGE_FILE_MD5="c525694ef2bb39c0d04826ca6cf58c79";
-        final static private String BACKIAMGE_FILE_MD5="e481912f539f59bc38b6cc26d278dfcd";
+    final static private String UI_FILE="D:\\DM_Master_sources-master\\sources\\UI";
+    final static private String IAMGE_FILE="D:\\DM_Master_sources-master\\sources\\img1.png";
+    final static private String BACKIAMGE_FILE="D:\\DM_Master_sources-master\\sources\\back.png";
 
-        final static private String STYLE_FILE="file:/D:/DM_Master_sources-master/sources/style";
-        final static private String SOURCES_LOCA="D:\\";
-        final static private String SOURCES_URL="https://github.com/Het2002/DM_Master_sources/archive/master.zip";
-        final static private String ZIP_FILE_LOCA="D:\\TEMP.ZIP";
-        final static private String CONFIG_FILE="D:\\DM_Master_sources-master\\config";
+    final static private String FXML_FILE_MD5="4443e5d25340d3b7b43cd233635a500d";
+    final static private String IAMGE_FILE_MD5="c525694ef2bb39c0d04826ca6cf58c79";
+    final static private String BACKIAMGE_FILE_MD5="e481912f539f59bc38b6cc26d278dfcd";
 
-        final static private File iamgeFile=new File(IAMGE_FILE);
-        final static private File backIamgeFile=new File(IAMGE_FILE);
-        final static private File UIFile=new File(BACKIAMGE_FILE);
+    final static private String STYLE_FILE="file:/D:/DM_Master_sources-master/sources/style";
+    final static private String SOURCES_LOCA="D:\\";
+    final static private String SOURCES_URL="https://github.com/Het2002/DM_Master_sources/archive/master.zip";
+    final static private String ZIP_FILE_LOCA="D:\\TEMP.ZIP";
+    final static private String CONFIG_FILE="D:\\DM_Master_sources-master\\config";
 
-        private Config config;
+    final static private File imageFile=new File(IAMGE_FILE);
+    final static private File backImageFile=new File(BACKIAMGE_FILE);
+    final static private File UIFile=new File(UI_FILE);
 
-        Stage stage=new Stage();
+    private Config config;
 
-        Text text_1=new Text("第一次运行需要加载文件，视网络情况需要一段时间，请耐心等等。：）");
-        Text text_2=new Text("资源文件不大，正常情况下不会用太长时间。");
-        Text text_3=new Text("若网络不可用将尝试使用本地加载。");
+    Stage stage=new Stage();
 
-        Stage firstStage=new Stage();
+    Text text_1=new Text("第一次运行需要加载文件，视网络情况需要一段时间，请耐心等等。：）");
+    Text text_2=new Text("资源文件不大，正常情况下不会用太长时间。");
+    Text text_3=new Text("若网络不可用将尝试使用本地加载。");
 
-        Pane secondPane = new Pane();
+    Stage firstStage=new Stage();
 
-        JFXSpinner loading =new JFXSpinner();
+    Pane secondPane = new Pane();
 
-        Runnable getSourceRunnable=new Runnable() {
-            @Override
-            public void run() {
-                
+    JFXSpinner loading =new JFXSpinner();
+
+
+
+    Runnable showRunnable=(new Runnable() {
+        @Override
+        public void run() { showWindow(firstStage); }
+    });
+
+
+    Runnable getSourceRunnable=new Runnable() {
+        @Override
+        public void run() {
+            try {
+                //Thread.sleep(6000);
+                getSources();
+                unZip();
+                Platform.runLater(showRunnable);
+            }catch(Exception e) {
+                e.printStackTrace();
+                System.out.println("[ERROR]无法从网络获取资源或解压文件，尝试本地释放文件。");
+                text_1.setText("从网络加载资源文件加载失败，尝试本地释放文件中。");
+                text_2.setText("");
+                text_3.setText("");
+
+                releaseData rd =new releaseData();
+                if(rd.releaseAllFile()==0){
+                    Platform.runLater(showRunnable);
+                }else {
+                    loading.setVisible(false);
+                    showInfoDialog("啊？","程序无法加载资源文件到这台计算机上，请检查系统是否有关于文件权限的问题，然后重启程序尝试。",secondPane);
+                    text_1.setText("资源文件加载失败，请检查系统是否有关于文件权限的问题，然后重启程序尝试。");
+                    text_2.setText("请手动访问：");
+                    TextArea ta=new TextArea("http://t.cn/Etr0t5c");
+                    ta.setLayoutX(text_2.getLayoutX()+50);
+                    ta.setLayoutY(text_2.getLayoutY());
+                    ta.setPrefWidth(200);
+                    ta.setPrefHeight(50);
+
+                    TextArea ta2=new TextArea("https://github.com/Het2002/DM_Master_sources");
+                    ta2.setLayoutX(text_3.getLayoutX()+50);
+                    ta2.setLayoutY(text_3.getLayoutY());
+                    ta2.setPrefWidth(200);
+                    ta2.setPrefHeight(50);
+                    secondPane.getChildren().add(ta2);
+                    text_3.setText("完整网址：");
+                    return;
+                }
+
             }
         }
-
-        Runnable showRunnable=(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    //Thread.sleep(6000);
-                    getSources();
-                    unZip();
-                    showWindow(firstStage);
-                }catch(IOException e) {
-                    e.printStackTrace();
-                    System.out.println("[ERROR]无法获取资源或解压文件。");
-                    showInfoDialog("啊？","程序无法加载资源文件到这台计算机上，请检查系统是否有关于文件权限的问题，然后重启程序尝试。",secondPane);
-                    loading.setVisible(false);
-                    text_1.setText("资源文件加载失败，请检查系统是否有关于文件权限的问题，然后重启程序尝试。");
-                    text_2.setText("");
-                    text_3.setText("");
-                    return;
-                }catch(Exception e){
-                    System.out.println("asdfygasofuyerfegrufyg");
-                    e.printStackTrace();
-                }
-            }
-        });
-
+    };
     @Override
         public void start(Stage primaryStage) throws IOException {
-
 /*
             int min=250;
             int max=100;
@@ -147,14 +168,14 @@ public class ProgramMain extends Application {
                 secondPane.getChildren().add(loading);
                 secondPane.getChildren().add(text_1);
                 secondPane.getChildren().add(text_2);
-                //secondPane.getChildren().add(text_3);
+                secondPane.getChildren().add(text_3);
 
                 firstStage.setScene(newScene);
 
                 firstStage.setOnShown(new EventHandler<WindowEvent>() {
                     @Override
                     public void handle(WindowEvent event) {
-                        Platform.runLater(showRunnable);
+                        new Thread(getSourceRunnable).start();
                     }
                 });
 
@@ -271,7 +292,6 @@ public class ProgramMain extends Application {
             e.printStackTrace();
         }
 
-
         try {
             FXMLLoader loader = new FXMLLoader(new URL(FXML_FILE));
             Parent root = loader.load();
@@ -344,7 +364,7 @@ public class ProgramMain extends Application {
                     return md5;
             } catch (Exception e) {
                     e.printStackTrace();
-                    return null;
+                    return "[ERROR]";
             } finally {
                     try {
                             if (fileInputStream != null){
@@ -368,13 +388,9 @@ public class ProgramMain extends Application {
                 InputStream stream=connection.getInputStream();
                 FileOutputStream fileStream=new FileOutputStream(new File("D:\\TEMP.ZIP"));
 
-
-            System.out.println("-------------------------------------------------------");
-                for(int i=stream.read();i!=-1;i=stream.read()){
+                for(int i=stream.read();i!=-1;i=stream.read())
                     fileStream.write(i);
-                    System.out.println(i);
-                }
-                System.out.println("-------------------------------------------------------");
+
                 fileStream.close();
                 
                 System.out.println("[INFO]资源拉取成功。");
@@ -426,19 +442,24 @@ public class ProgramMain extends Application {
         //判断有没有资源文件，有则告诉main不需再下载资源文件(返回true)
         public static boolean hasSources() {
 
-            if(!UIFile.exists()&&!iamgeFile.exists()&&!backIamgeFile.exists()) {
+        System.out.println(UIFile.exists());
+            System.out.println(imageFile.exists());
+            System.out.println(backImageFile.exists());
+            if(!UIFile.exists()||!imageFile.exists()||!backImageFile.exists()) {
                 System.out.println("[INFO]没有UI文件，获取资源并解压。");
                 return false;
                 }
             else {
                 String UIFileMD5=getMD5(UIFile);
-                String iamgeFileMD5=getMD5(UIFile);
-                String backIamgeFileMD5=getMD5(UIFile);
-                if(UIFileMD5.equals(FXML_FILE_MD5)&& iamgeFileMD5.equals(IAMGE_FILE_MD5)&& backIamgeFileMD5.equals(BACKIAMGE_FILE_MD5)){
+                String imageFileMD5=getMD5(imageFile);
+                String backImageFileMD5=getMD5(backImageFile);
+                if(UIFileMD5.equals(FXML_FILE_MD5) && imageFileMD5.equals(IAMGE_FILE_MD5) && backImageFileMD5.equals(BACKIAMGE_FILE_MD5)){
                     System.out.println("[INFO]有UI文件，直接运行。");
                     return true;
-                }else
+                }else{
+                    System.out.println("[INFO]文件校验错误，拉取文件。");
                     return false;
+                }
             }
         }
 

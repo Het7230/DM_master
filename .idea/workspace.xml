@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="DMmsater:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="af52816d-3d8d-420e-823c-b3961a36b72e" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/commons_codec_1_11.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/releaseData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/sourcesData/UIFileData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/sourcesData/backData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/sourcesData/img1Data.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/sourcesData/img1Data_1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/sourcesData/img1Data_2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DM_msater/main/Config.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DM_msater/main/Config.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DM_msater.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DM_msater.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DM_msater/main/ProgramMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DM_msater/main/ProgramMain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DM_msater/main/UICtrl$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DM_msater/main/UICtrl$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DM_msater/main/UICtrl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DM_msater/main/UICtrl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Data.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/ProgramMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ProgramMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/UICtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/UICtrl.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,17 +34,92 @@
       <file leaf-file-name="ProgramMain.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/ProgramMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="128" column="53" lean-forward="true" selection-start-line="128" selection-start-column="53" selection-end-line="128" selection-end-column="53" />
+            <state relative-caret-position="2188">
+              <caret line="170" column="16" selection-start-line="170" selection-start-column="16" selection-end-line="170" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4663#4664#0" expanded="true" />
-                <element signature="e#4742#4743#0" expanded="true" />
-                <element signature="e#5136#5137#0" expanded="true" />
-                <element signature="e#5172#5173#0" expanded="true" />
-                <element signature="e#6306#6307#0" expanded="true" />
-                <element signature="e#6372#6373#0" expanded="true" />
+                <element signature="e#5373#5374#0" expanded="true" />
+                <element signature="e#5458#5459#0" expanded="true" />
+                <element signature="e#5742#5743#0" expanded="true" />
+                <element signature="e#5778#5779#0" expanded="true" />
+                <element signature="e#7017#7018#0" expanded="true" />
+                <element signature="e#7083#7084#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="releaseData.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/releaseData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="598">
+              <caret line="49" column="22" lean-forward="true" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UIFileData.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/sourcesData/UIFileData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="57">
+              <caret line="3" column="37" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="img1Data_1.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/sourcesData/img1Data_1.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="57">
+              <caret line="3" column="37" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="img1Data_2.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/sourcesData/img1Data_2.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="57">
+              <caret line="3" column="47810" selection-start-line="3" selection-start-column="47810" selection-end-line="3" selection-end-column="47810" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="img1Data.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/sourcesData/img1Data.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="38">
+              <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="backData.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/sourcesData/backData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="4" column="1" lean-forward="true" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Hex.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/libs/commons-codec-1.11.jar!/org/apache/commons/codec/binary/Hex.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="21" selection-start-line="21" selection-end-line="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MessageDigest.java" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/src.zip!/java/security/MessageDigest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1368">
+              <caret line="105" column="35" selection-start-line="105" selection-start-column="22" selection-end-line="105" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -43,69 +127,12 @@
       <file leaf-file-name="Font.java" pinned="false" current-in-tab="false">
         <entry file="jar://C:/Program Files/Java/javafx-src.zip!/javafx/scene/text/Font.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
+            <state relative-caret-position="4826">
               <caret line="296" column="11" selection-start-line="296" selection-start-column="11" selection-end-line="296" selection-end-column="11" />
               <folding>
                 <element signature="e#11283#11284#0" expanded="true" />
                 <element signature="e#11315#11316#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Text.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/javafx-src.zip!/javafx/scene/text/Text.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="653" column="22" selection-start-line="653" selection-start-column="22" selection-end-line="653" selection-end-column="22" />
-              <folding>
-                <element signature="e#20940#20941#0" expanded="true" />
-                <element signature="e#20990#20991#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Data.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/Data.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="65" column="24" selection-start-line="65" selection-start-column="24" selection-end-line="65" selection-end-column="24" />
-              <folding>
-                <element signature="e#1579#1580#0" expanded="true" />
-                <element signature="e#1617#1618#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Config.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/Config.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="72" column="5" selection-start-line="72" selection-start-column="5" selection-end-line="72" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UICtrl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/UICtrl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2074">
-              <caret line="494" column="2" lean-forward="true" selection-start-line="494" selection-start-column="2" selection-end-line="494" selection-end-column="2" />
-              <folding>
-                <element signature="e#3410#5880#0" expanded="true" />
-                <element signature="e#5879#5880#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JFXDialog.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/com/jfoenix/jfoenix/8.0.8/jfoenix-8.0.8.jar!/com/jfoenix/controls/JFXDialog.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="402">
-              <caret line="168" column="38" selection-start-line="168" selection-start-column="38" selection-end-line="168" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -142,6 +169,7 @@
       <find>500</find>
       <find>secondStage</find>
       <find>public Pane</find>
+      <find>Iamge</find>
     </findStrings>
     <replaceStrings>
       <replace>text</replace>
@@ -155,6 +183,7 @@
       <replace>Interpolator.EASE_BOTH</replace>
       <replace>400</replace>
       <replace>primaryStage</replace>
+      <replace>Image</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -171,13 +200,20 @@
         <option value="$PROJECT_DIR$/src/main/Config.java" />
         <option value="$PROJECT_DIR$/src/main/Data.java" />
         <option value="$PROJECT_DIR$/src/main/UICtrl.java" />
+        <option value="$PROJECT_DIR$/src/main/sourcesData/img1Data_2.java" />
+        <option value="$PROJECT_DIR$/src/main/relaseData.java" />
+        <option value="$PROJECT_DIR$/src/main/sourcesData/img1Data.java" />
+        <option value="$PROJECT_DIR$/src/main/releaseData.java" />
+        <option value="$PROJECT_DIR$/src/main/sourcesData/img1Data_1.java" />
+        <option value="$PROJECT_DIR$/src/main/sourcesData/UIFileData.java" />
+        <option value="$PROJECT_DIR$/src/main/sourcesData/backData.java" />
         <option value="$PROJECT_DIR$/src/main/ProgramMain.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-10" />
-    <option name="y" value="28" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
     <option name="width" value="1460" />
     <option name="height" value="817" />
   </component>
@@ -187,8 +223,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
@@ -213,19 +247,25 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="DM_msater" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/commons-codec-1.11.jar!/" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
@@ -317,10 +357,18 @@
       <option name="presentableId" value="Default" />
       <updated>1544079169060</updated>
     </task>
+    <task id="LOCAL-00001" summary=".">
+      <created>1549099485302</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1549099485302</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-10" y="28" width="1460" height="817" extended-state="0" />
+    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -331,12 +379,13 @@
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.35042736" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3298292" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32325888" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2132964" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21388888" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.30354795" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -348,11 +397,14 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -360,62 +412,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/Data.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/UICtrl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1083">
-          <caret line="57" selection-start-line="57" selection-end-line="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/ProgramMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1254">
-          <caret line="66" selection-start-line="66" selection-end-line="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Data.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="27" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/UICtrl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1026">
-          <caret line="54" column="27" lean-forward="true" selection-start-line="54" selection-start-column="27" selection-end-line="54" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/ProgramMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="817">
-          <caret line="63" column="14" selection-start-line="63" selection-start-column="14" selection-end-line="63" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Data.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/UICtrl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1007">
-          <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/ProgramMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="760">
@@ -642,37 +638,29 @@
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/jfoenix/jfoenix/8.0.8/jfoenix-8.0.8.jar!/com/jfoenix/controls/JFXDialog.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
+        <state relative-caret-position="3192">
           <caret line="168" column="38" selection-start-line="168" selection-start-column="38" selection-end-line="168" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Config.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
+        <state relative-caret-position="836">
           <caret line="72" column="5" selection-start-line="72" selection-start-column="5" selection-end-line="72" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Data.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
+        <state relative-caret-position="1140">
           <caret line="65" column="24" selection-start-line="65" selection-start-column="24" selection-end-line="65" selection-end-column="24" />
-          <folding>
-            <element signature="e#1579#1580#0" expanded="true" />
-            <element signature="e#1617#1618#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/UICtrl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2074">
-          <caret line="494" column="2" lean-forward="true" selection-start-line="494" selection-start-column="2" selection-end-line="494" selection-end-column="2" />
-          <folding>
-            <element signature="e#3410#5880#0" expanded="true" />
-            <element signature="e#5879#5880#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="8626">
+          <caret line="494" column="2" selection-start-line="494" selection-start-column="2" selection-end-line="494" selection-end-column="2" />
         </state>
       </provider>
     </entry>
@@ -695,16 +683,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
           <caret line="122" column="15" lean-forward="true" selection-start-line="122" selection-start-column="4" selection-end-line="122" selection-end-column="15" />
-          <folding>
-            <element signature="e#3912#3913#0" expanded="true" />
-            <element signature="e#3935#3936#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/javafx-src.zip!/javafx/scene/text/Text.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
+        <state relative-caret-position="10412">
           <caret line="653" column="22" selection-start-line="653" selection-start-column="22" selection-end-line="653" selection-end-column="22" />
           <folding>
             <element signature="e#20940#20941#0" expanded="true" />
@@ -715,7 +699,7 @@
     </entry>
     <entry file="jar://C:/Program Files/Java/javafx-src.zip!/javafx/scene/text/Font.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
+        <state relative-caret-position="4826">
           <caret line="296" column="11" selection-start-line="296" selection-start-column="11" selection-end-line="296" selection-end-column="11" />
           <folding>
             <element signature="e#11283#11284#0" expanded="true" />
@@ -724,18 +708,77 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/ProgramMain.java">
+    <entry file="jar://C:/Program Files/Java/src.zip!/java/security/MessageDigest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="128" column="53" lean-forward="true" selection-start-line="128" selection-start-column="53" selection-end-line="128" selection-end-column="53" />
+        <state relative-caret-position="1368">
+          <caret line="105" column="35" selection-start-line="105" selection-start-column="22" selection-end-line="105" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/commons-codec-1.11.jar!/org/apache/commons/codec/binary/Hex.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/sourcesData/img1Data_2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="47810" selection-start-line="3" selection-start-column="47810" selection-end-line="3" selection-end-column="47810" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/sourcesData/img1Data_1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="37" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/sourcesData/UIFileData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="37" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/sourcesData/img1Data.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/sourcesData/backData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="1" lean-forward="true" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/releaseData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="598">
+          <caret line="49" column="22" lean-forward="true" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4663#4664#0" expanded="true" />
-            <element signature="e#4742#4743#0" expanded="true" />
-            <element signature="e#5136#5137#0" expanded="true" />
-            <element signature="e#5172#5173#0" expanded="true" />
-            <element signature="e#6306#6307#0" expanded="true" />
-            <element signature="e#6372#6373#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/ProgramMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2188">
+          <caret line="170" column="16" selection-start-line="170" selection-start-column="16" selection-end-line="170" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5373#5374#0" expanded="true" />
+            <element signature="e#5458#5459#0" expanded="true" />
+            <element signature="e#5742#5743#0" expanded="true" />
+            <element signature="e#5778#5779#0" expanded="true" />
+            <element signature="e#7017#7018#0" expanded="true" />
+            <element signature="e#7083#7084#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -746,10 +789,12 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
+          <last-edited>DMmsater:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
@@ -816,7 +861,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>com.jfoenix:jfoenix:8.0.8</last-edited>
+          <last-edited>commons-codec-1.11</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
