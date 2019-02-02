@@ -6,6 +6,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Random;
@@ -16,7 +17,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXSpinner;
-import com.sun.prism.shader.Solid_TextureYV12_AlphaTest_Loader;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -32,17 +32,29 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import org.apache.commons.codec.binary.Hex;
 
 import static javafx.stage.StageStyle.*;
 
 public class ProgramMain extends Application {
         final static private String FXML_FILE="file:/D:/DM_Master_sources-master/sources/UI.fxml";
+        final static private String IAMGE_FILE="file:/D:/DM_Master_sources-master/sources/img1.png";
+        final static private String BACKIAMGE_FILE="file:/D:/DM_Master_sources-master/sources/back.png";
+
+        final static private String FXML_FILE_MD5="4443e5d25340d3b7b43cd233635a500d";
+        final static private String IAMGE_FILE_MD5="c525694ef2bb39c0d04826ca6cf58c79";
+        final static private String BACKIAMGE_FILE_MD5="e481912f539f59bc38b6cc26d278dfcd";
+
         final static private String STYLE_FILE="file:/D:/DM_Master_sources-master/sources/style";
         final static private String SOURCES_LOCA="D:\\";
         final static private String SOURCES_URL="https://github.com/Het2002/DM_Master_sources/archive/master.zip";
         final static private String ZIP_FILE_LOCA="D:\\TEMP.ZIP";
         final static private String CONFIG_FILE="D:\\DM_Master_sources-master\\config";
-        
+
+        final static private File iamgeFile=new File(IAMGE_FILE);
+        final static private File backIamgeFile=new File(IAMGE_FILE);
+        final static private File UIFile=new File(BACKIAMGE_FILE);
+
         private Config config;
 
         Stage stage=new Stage();
@@ -56,6 +68,13 @@ public class ProgramMain extends Application {
         Pane secondPane = new Pane();
 
         JFXSpinner loading =new JFXSpinner();
+
+        Runnable getSourceRunnable=new Runnable() {
+            @Override
+            public void run() {
+                
+            }
+        }
 
         Runnable showRunnable=(new Runnable() {
             @Override
@@ -128,7 +147,7 @@ public class ProgramMain extends Application {
                 secondPane.getChildren().add(loading);
                 secondPane.getChildren().add(text_1);
                 secondPane.getChildren().add(text_2);
-                secondPane.getChildren().add(text_3);
+                //secondPane.getChildren().add(text_3);
 
                 firstStage.setScene(newScene);
 
@@ -309,6 +328,35 @@ public class ProgramMain extends Application {
 
     }
         
+
+    public static String getMD5(File file) {
+            FileInputStream fileInputStream = null;
+            try {
+                    MessageDigest MD5 = MessageDigest.getInstance("MD5");
+                    fileInputStream = new FileInputStream(file);
+                    byte[] buffer = new byte[8192];
+                    int length;
+                    while ((length = fileInputStream.read(buffer)) != -1) {
+                            MD5.update(buffer, 0, length);
+                    }
+                    String md5=new String(Hex.encodeHex(MD5.digest()));
+                    System.out.println(md5);
+                    return md5;
+            } catch (Exception e) {
+                    e.printStackTrace();
+                    return null;
+            } finally {
+                    try {
+                            if (fileInputStream != null){
+                                    fileInputStream.close();
+                                    }
+                    } catch (IOException e) {
+                            e.printStackTrace();
+                    }
+            }
+    }
+
+    
         //从gayhub上抓点好东西
         public static void getSources()throws IOException{
 
@@ -377,17 +425,21 @@ public class ProgramMain extends Application {
 
         //判断有没有资源文件，有则告诉main不需再下载资源文件(返回true)
         public static boolean hasSources() {
-            
-            File UIsources=new File("D:\\DM_Master_sources-master\\sources\\UI.fxml");
-            
-            if(UIsources.exists()==false) {
+
+            if(!UIFile.exists()&&!iamgeFile.exists()&&!backIamgeFile.exists()) {
                 System.out.println("[INFO]没有UI文件，获取资源并解压。");
                 return false;
                 }
             else {
-                System.out.println("[INFO]有UI文件，直接运行。");
-                return true;
-                }
+                String UIFileMD5=getMD5(UIFile);
+                String iamgeFileMD5=getMD5(UIFile);
+                String backIamgeFileMD5=getMD5(UIFile);
+                if(UIFileMD5.equals(FXML_FILE_MD5)&& iamgeFileMD5.equals(IAMGE_FILE_MD5)&& backIamgeFileMD5.equals(BACKIAMGE_FILE_MD5)){
+                    System.out.println("[INFO]有UI文件，直接运行。");
+                    return true;
+                }else
+                    return false;
+            }
         }
 
     public void showInfoDialog(String header,String message,Pane pane) {
