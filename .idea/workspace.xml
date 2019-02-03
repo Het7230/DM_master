@@ -7,19 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="af52816d-3d8d-420e-823c-b3961a36b72e" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/commons_codec_1_11.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/releaseData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/sourcesData/UIFileData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/sourcesData/backData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/sourcesData/img1Data.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/sourcesData/img1Data_1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/sourcesData/img1Data_2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DM_msater.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DM_msater.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DM_msater/main/ProgramMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DM_msater/main/ProgramMain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/ProgramMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ProgramMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/releaseData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/releaseData.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,16 +23,10 @@
       <file leaf-file-name="ProgramMain.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/ProgramMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2188">
-              <caret line="170" column="16" selection-start-line="170" selection-start-column="16" selection-end-line="170" selection-end-column="16" />
+            <state relative-caret-position="180">
+              <caret line="108" column="41" lean-forward="true" selection-start-line="108" selection-start-column="41" selection-end-line="108" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#5373#5374#0" expanded="true" />
-                <element signature="e#5458#5459#0" expanded="true" />
-                <element signature="e#5742#5743#0" expanded="true" />
-                <element signature="e#5778#5779#0" expanded="true" />
-                <element signature="e#7017#7018#0" expanded="true" />
-                <element signature="e#7083#7084#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -52,8 +35,8 @@
       <file leaf-file-name="releaseData.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/releaseData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="598">
-              <caret line="49" column="22" lean-forward="true" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
+            <state relative-caret-position="388">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -64,8 +47,8 @@
       <file leaf-file-name="UIFileData.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/sourcesData/UIFileData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="3" column="37" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
+            <state relative-caret-position="475">
+              <caret line="3" column="5153" selection-start-line="3" selection-start-column="5153" selection-end-line="3" selection-end-column="5153" />
             </state>
           </provider>
         </entry>
@@ -82,7 +65,7 @@
       <file leaf-file-name="img1Data_2.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/sourcesData/img1Data_2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
+            <state relative-caret-position="950">
               <caret line="3" column="47810" selection-start-line="3" selection-start-column="47810" selection-end-line="3" selection-end-column="47810" />
             </state>
           </provider>
@@ -101,7 +84,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/sourcesData/backData.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="76">
-              <caret line="4" column="1" lean-forward="true" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+              <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -109,7 +92,7 @@
       <file leaf-file-name="Hex.class" pinned="false" current-in-tab="false">
         <entry file="jar://$PROJECT_DIR$/libs/commons-codec-1.11.jar!/org/apache/commons/codec/binary/Hex.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
+            <state relative-caret-position="399">
               <caret line="21" selection-start-line="21" selection-end-line="21" />
             </state>
           </provider>
@@ -118,7 +101,7 @@
       <file leaf-file-name="MessageDigest.java" pinned="false" current-in-tab="false">
         <entry file="jar://C:/Program Files/Java/src.zip!/java/security/MessageDigest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1368">
+            <state relative-caret-position="1995">
               <caret line="105" column="35" selection-start-line="105" selection-start-column="22" selection-end-line="105" selection-end-column="35" />
             </state>
           </provider>
@@ -127,12 +110,8 @@
       <file leaf-file-name="Font.java" pinned="false" current-in-tab="false">
         <entry file="jar://C:/Program Files/Java/javafx-src.zip!/javafx/scene/text/Font.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4826">
+            <state relative-caret-position="5624">
               <caret line="296" column="11" selection-start-line="296" selection-start-column="11" selection-end-line="296" selection-end-column="11" />
-              <folding>
-                <element signature="e#11283#11284#0" expanded="true" />
-                <element signature="e#11315#11316#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -170,6 +149,7 @@
       <find>secondStage</find>
       <find>public Pane</find>
       <find>Iamge</find>
+      <find>2002</find>
     </findStrings>
     <replaceStrings>
       <replace>text</replace>
@@ -185,6 +165,9 @@
       <replace>primaryStage</replace>
       <replace>Image</replace>
     </replaceStrings>
+    <dirStrings>
+      <dir>N:\project\DM_msater</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="ROOT_SYNC" value="DONT_SYNC" />
@@ -203,10 +186,10 @@
         <option value="$PROJECT_DIR$/src/main/sourcesData/img1Data_2.java" />
         <option value="$PROJECT_DIR$/src/main/relaseData.java" />
         <option value="$PROJECT_DIR$/src/main/sourcesData/img1Data.java" />
-        <option value="$PROJECT_DIR$/src/main/releaseData.java" />
         <option value="$PROJECT_DIR$/src/main/sourcesData/img1Data_1.java" />
         <option value="$PROJECT_DIR$/src/main/sourcesData/UIFileData.java" />
         <option value="$PROJECT_DIR$/src/main/sourcesData/backData.java" />
+        <option value="$PROJECT_DIR$/src/main/releaseData.java" />
         <option value="$PROJECT_DIR$/src/main/ProgramMain.java" />
       </list>
     </option>
@@ -223,7 +206,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -255,8 +237,9 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -264,7 +247,7 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/commons-codec-1.11.jar!/" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -364,16 +347,21 @@
       <option name="project" value="LOCAL" />
       <updated>1549099485302</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary=".">
+      <created>1549187527767</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1549187527767</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.325887" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
@@ -384,7 +372,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21388888" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21388888" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.30354795" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -397,6 +385,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.325887" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -622,10 +611,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="236" column="5" lean-forward="true" selection-start-line="236" selection-start-column="5" selection-end-line="236" selection-end-column="5" />
-          <folding>
-            <element signature="e#10065#10066#0" expanded="true" />
-            <element signature="e#10148#10149#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -699,44 +684,33 @@
     </entry>
     <entry file="jar://C:/Program Files/Java/javafx-src.zip!/javafx/scene/text/Font.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4826">
+        <state relative-caret-position="5624">
           <caret line="296" column="11" selection-start-line="296" selection-start-column="11" selection-end-line="296" selection-end-column="11" />
-          <folding>
-            <element signature="e#11283#11284#0" expanded="true" />
-            <element signature="e#11315#11316#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/src.zip!/java/security/MessageDigest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1368">
+        <state relative-caret-position="1995">
           <caret line="105" column="35" selection-start-line="105" selection-start-column="22" selection-end-line="105" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/libs/commons-codec-1.11.jar!/org/apache/commons/codec/binary/Hex.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
+        <state relative-caret-position="399">
           <caret line="21" selection-start-line="21" selection-end-line="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/sourcesData/img1Data_2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
+        <state relative-caret-position="950">
           <caret line="3" column="47810" selection-start-line="3" selection-start-column="47810" selection-end-line="3" selection-end-column="47810" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/sourcesData/img1Data_1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="37" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/sourcesData/UIFileData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
           <caret line="3" column="37" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
@@ -753,14 +727,21 @@
     <entry file="file://$PROJECT_DIR$/src/main/sourcesData/backData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
-          <caret line="4" column="1" lean-forward="true" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/sourcesData/UIFileData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="3" column="5153" selection-start-line="3" selection-start-column="5153" selection-end-line="3" selection-end-column="5153" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/releaseData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="49" column="22" lean-forward="true" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
+        <state relative-caret-position="388">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -769,16 +750,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/ProgramMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2188">
-          <caret line="170" column="16" selection-start-line="170" selection-start-column="16" selection-end-line="170" selection-end-column="16" />
+        <state relative-caret-position="180">
+          <caret line="108" column="41" lean-forward="true" selection-start-line="108" selection-start-column="41" selection-end-line="108" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5373#5374#0" expanded="true" />
-            <element signature="e#5458#5459#0" expanded="true" />
-            <element signature="e#5742#5743#0" expanded="true" />
-            <element signature="e#5778#5779#0" expanded="true" />
-            <element signature="e#7017#7018#0" expanded="true" />
-            <element signature="e#7083#7084#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -802,7 +777,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>No facets are configured</last-edited>
+          <last-edited>Detection</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -842,6 +817,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

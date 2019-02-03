@@ -8,7 +8,7 @@ import java.io.FileOutputStream;
 
 public class releaseData {
 
-    final static private String UI_FILE="D:\\DM_Master_sources-master\\sources\\UI";
+    final static private String UI_FILE="D:\\DM_Master_sources-master\\sources\\UI.fxml";
     final static private String IAMGE_FILE="D:\\DM_Master_sources-master\\sources\\img1.png";
     final static private String BACKIAMGE_FILE="D:\\DM_Master_sources-master\\sources\\back.png";
     final static private String MAIN_DIR="D:\\DM_Master_sources-master\\sources\\";
