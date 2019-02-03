@@ -38,9 +38,9 @@ import org.apache.commons.codec.binary.Hex;
 import static javafx.stage.StageStyle.*;
 
 public class ProgramMain extends Application {
-    final static private String FXML_FILE="file:/D:/DM_Master_sources-master/sources/UI";
+    final static private String FXML_FILE="file:/D:/DM_Master_sources-master/sources/UI.fxml";
 
-    final static private String UI_FILE="D:\\DM_Master_sources-master\\sources\\UI";
+    final static private String UI_FILE="D:\\DM_Master_sources-master\\sources\\UI.fxml";
     final static private String IAMGE_FILE="D:\\DM_Master_sources-master\\sources\\img1.png";
     final static private String BACKIAMGE_FILE="D:\\DM_Master_sources-master\\sources\\back.png";
 
@@ -50,7 +50,7 @@ public class ProgramMain extends Application {
 
     final static private String STYLE_FILE="file:/D:/DM_Master_sources-master/sources/style";
     final static private String SOURCES_LOCA="D:\\";
-    final static private String SOURCES_URL="https://github.com/Het2002/DM_Master_sources/archive/master.zip";
+    final static private String SOURCES_URL="https://github.com/Het7230/DM_Master_sources/archive/master.zip";
     final static private String ZIP_FILE_LOCA="D:\\TEMP.ZIP";
     final static private String CONFIG_FILE="D:\\DM_Master_sources-master\\config";
 
@@ -103,13 +103,13 @@ public class ProgramMain extends Application {
                     showInfoDialog("啊？","程序无法加载资源文件到这台计算机上，请检查系统是否有关于文件权限的问题，然后重启程序尝试。",secondPane);
                     text_1.setText("资源文件加载失败，请检查系统是否有关于文件权限的问题，然后重启程序尝试。");
                     text_2.setText("请手动访问：");
-                    TextArea ta=new TextArea("http://t.cn/Etr0t5c");
+                    TextArea ta=new TextArea("http://t.cn/EtFODZy");
                     ta.setLayoutX(text_2.getLayoutX()+50);
                     ta.setLayoutY(text_2.getLayoutY());
                     ta.setPrefWidth(200);
                     ta.setPrefHeight(50);
 
-                    TextArea ta2=new TextArea("https://github.com/Het2002/DM_Master_sources");
+                    TextArea ta2=new TextArea("https://github.com/Het7230/DM_Master_sources");
                     ta2.setLayoutX(text_3.getLayoutX()+50);
                     ta2.setLayoutY(text_3.getLayoutY());
                     ta2.setPrefWidth(200);
