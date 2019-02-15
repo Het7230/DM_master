@@ -397,7 +397,6 @@ public class UICtrl {
     }
     @FXML
     void addName(){
-        data=new Data();
         data.add(inputName.getText());
 
         names.clear();
@@ -436,7 +435,6 @@ public class UICtrl {
         timeline.getKeyFrames().add(kf2);
 
         timeline.play();
-
 
     }
     

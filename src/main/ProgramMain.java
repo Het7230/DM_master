@@ -48,7 +48,7 @@ public class ProgramMain extends Application {
     final static private String IAMGE_FILE_MD5="c525694ef2bb39c0d04826ca6cf58c79";
     final static private String BACKIAMGE_FILE_MD5="e481912f539f59bc38b6cc26d278dfcd";
 
-    final static private String STYLE_FILE="file:/D:/DM_Master_sources-master/sources/style";
+    final static private String STYLE_FILE="file:/D:/DM_Master_sources-master/sources/css.css";
     final static private String SOURCES_LOCA="D:\\";
     final static private String SOURCES_URL="https://github.com/Het7230/DM_Master_sources/archive/master.zip";
     final static private String ZIP_FILE_LOCA="D:\\TEMP.ZIP";
@@ -199,13 +199,14 @@ public class ProgramMain extends Application {
 
             try{
                 File configFile=new File(CONFIG_FILE);
+                
                 if(configFile.exists()!=true){
                     configFile.createNewFile();
                     config= new Config();
-                }
-
+                }else {
                 ObjectInputStream ois =new ObjectInputStream(new FileInputStream(configFile));
                 this.config=(Config) ois.readObject();
+                }
 
             }catch (Exception e){
                 config=new Config();
@@ -220,6 +221,7 @@ public class ProgramMain extends Application {
                 stage.setTitle("MDmaster 初号姬");
                 stage.setScene(scene);
                 stage.setResizable(false);
+                //scene.getStylesheets().add(STYLE_FILE);
                 UICtrl controller = loader.getController(); //获取Controller的实例对象//传递primaryStage，scene参数给Controller
                 controller.setStage(stage);
                 controller.setScene(scene);
@@ -433,7 +435,7 @@ public class ProgramMain extends Application {
               out.close();
             }
             System.out.println("[INFO]资源解压完毕。");
-            //zipFile.delete();
+            zipFile.delete();
                 
         }
 

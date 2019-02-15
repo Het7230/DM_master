@@ -63,7 +63,7 @@ public class Data {
 
     //------------------------------------------------------
     public int getSize(){
-        return listSize;
+        return nameList.size();
     }
 
     //------------------------------------------------------
