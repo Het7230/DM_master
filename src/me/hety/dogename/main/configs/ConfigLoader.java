@@ -21,11 +21,21 @@ public class ConfigLoader {
     //ConfigValuesBean config;
     private MainConfig mainConfig;
     private VoiceConfig voiceConfig;
+    
+    private final String mainConfigLocation = "files"+ File.separator+"Config.json";
+    private final String voiceConfigLocation = "files"+ File.separator+"VoiceConfig.json";
+
+    public String getMainConfigLocation() {
+        return mainConfigLocation;
+    }
+
+    public String getVoiceConfigLocation() {
+        return voiceConfigLocation;
+    }
 
     public MainConfig getMainConfig() {
         return mainConfig;
     }
-
 
     public MainConfig readConfigFromFile(String fileLocation){
 
@@ -46,23 +56,25 @@ public class ConfigLoader {
                 configFile.getParentFile().mkdirs();
                 configFile.createNewFile();
                 mainConfig=new MainConfig();
-                writeMainConfigToFile("files"+ File.separator+"Config.json");
+                writeMainConfigToFile(mainConfigLocation);
                 return mainConfig;
             }
             InputStream inputStream=new FileInputStream(configFile);
             ConfigJSON=IOUtils.toString(inputStream, StandardCharsets.UTF_8);
 
             mainConfig=gson.fromJson(ConfigJSON,MainConfig.class);
+
             if (mainConfig == null) {
                 mainConfig=new MainConfig();
-                writeMainConfigToFile("files"+ File.separator+"Config.json");
+                writeMainConfigToFile(mainConfigLocation);
                 return mainConfig;
             }
+
         }catch (Exception e){
             log.error("Error to load config file:"+e+"\nUse Default config.");
 
             mainConfig=new MainConfig();
-            writeMainConfigToFile("files"+ File.separator+"Config.json");
+            writeMainConfigToFile(mainConfigLocation);
             return mainConfig;
         }
 
@@ -89,17 +101,17 @@ public class ConfigLoader {
                 configFile.createNewFile();
 
                 voiceConfig=new VoiceConfig();
-                writeVoiceConfigToFile("files"+ File.separator+"VoiceConfig.json");
+                writeVoiceConfigToFile(voiceConfigLocation);
                 return voiceConfig;
             }
             InputStream inputStream=new FileInputStream(configFile);
             ConfigJSON=IOUtils.toString(inputStream, StandardCharsets.UTF_8);
 
-            writeVoiceConfigToFile("files"+ File.separator+"VoiceConfig.json");
+            writeVoiceConfigToFile(voiceConfigLocation);
             voiceConfig=gson.fromJson(ConfigJSON,VoiceConfig.class);
             if (voiceConfig == null) {
                 voiceConfig=new VoiceConfig();
-                writeVoiceConfigToFile("files"+ File.separator+"VoiceConfig.json");
+                writeVoiceConfigToFile(voiceConfigLocation);
                 return voiceConfig;
             }
 
@@ -107,7 +119,7 @@ public class ConfigLoader {
             log.error("Error to load voice config file:"+e+"\nUse Default voice config.");
 
             voiceConfig=new VoiceConfig();
-            writeVoiceConfigToFile("files"+ File.separator+"VoiceConfig.json");
+            writeVoiceConfigToFile(voiceConfigLocation);
             return voiceConfig;
         }
 

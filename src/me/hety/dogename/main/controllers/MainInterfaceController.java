@@ -248,7 +248,7 @@ public final class MainInterfaceController {
 
     private void runNameMode(Chooser chooser){
 
-        if(nameData.isEmpty(mainConfig.isTaoluModeProperty())){
+        if(nameData.isEmpty()){
             new DialogMaker(rootPane).creatMessageDialog("哦霍~","现在名单还是空的捏~请前往名单管理添加名字 或 使用数字挑选法。");
             return;
         }
@@ -272,7 +272,6 @@ public final class MainInterfaceController {
                 mainConfig.getCycleTimesProperty(),
                 mainConfig.isIgnorePastProperty(),
                 mainConfig.isEqualModeProperty(),
-                mainConfig.isTaoluModeProperty(),
                 mainConfig.isVoicePlayProperty()
         );
 
@@ -316,7 +315,6 @@ public final class MainInterfaceController {
                 mainConfig.getCycleTimesProperty(),
                 mainConfig.isIgnorePastProperty(),
                 mainConfig.isEqualModeProperty(),
-                mainConfig.isTaoluModeProperty(),
                 mainConfig.isVoicePlayProperty()
         );
     }
@@ -327,5 +325,9 @@ public final class MainInterfaceController {
 
     public Pane getRootPane() {
         return rootPane;
+    }
+
+    public MainConfig getMainConfig() {
+        return mainConfig;
     }
 }

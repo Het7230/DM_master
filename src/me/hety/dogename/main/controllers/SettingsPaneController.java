@@ -18,6 +18,10 @@ import org.apache.logging.log4j.Logger;
 
 
 public class SettingsPaneController extends VBox {
+
+    @FXML
+    private JFXCheckBox showSayingBtn;
+
     @FXML
     private JFXCheckBox newAlgoBtn;
 
@@ -38,9 +42,6 @@ public class SettingsPaneController extends VBox {
 
     @FXML
     private JFXRadioButton chooseOnce;
-
-    @FXML
-    private JFXCheckBox taoluModeBtn;
 
     @FXML
     private JFXRadioButton randomTimes;
@@ -91,8 +92,6 @@ public class SettingsPaneController extends VBox {
 
         equalModeBtn.selectedProperty().bindBidirectional(mainConfig.equalModePropertyProperty());
 
-        taoluModeBtn.selectedProperty().bindBidirectional(mainConfig.taoluModePropertyProperty());
-
         newAlgoBtn.selectedProperty().bindBidirectional(mainConfig.newAlgoPropertyProperty());
 
         voicePlayBtn.selectedProperty().bindBidirectional(mainConfig.voicePlayPropertyProperty());
@@ -101,11 +100,11 @@ public class SettingsPaneController extends VBox {
 
         speedBar.valueProperty().bindBidirectional(mainConfig.speedPropertyProperty());
 
+        showSayingBtn.selectedProperty().bindBidirectional(mainConfig.showSayingProperty());
+
         mainConfig.ignorePastPropertyProperty().addListener((observable, oldValue, isIgnorePast) -> {
-            if(isIgnorePast){
-                //如果 忽略被点过的名字 选上就把套路模式的按钮给取消掉
-                taoluModeBtn.setSelected(false);
-            }else{
+            if(!isIgnorePast)
+            {
                 //如果 忽略被点过的名字 被取消后就把机会均等模式的按钮给取消掉
                 equalModeBtn.setSelected(false);
             }
@@ -131,7 +130,8 @@ public class SettingsPaneController extends VBox {
 
     @FXML
     void showEqualMode(ActionEvent event) {
-        new DialogMaker(rootPane).creatMessageDialog("啥玩意？","勾选“机会均等”后，将会保存已点过的的名字和数字到文件中，下次启动时仍不会被点到，直到全部名字\n或数字被点完 或点击“机会均等”的“重置”按钮。\n注意：仅保存“这次点过就不点了”模式下选中的名字或数字。");
+        new DialogMaker(rootPane).creatMessageDialog("什么？",
+                "//有待补充。;-)");
 
     }
 
@@ -147,25 +147,7 @@ public class SettingsPaneController extends VBox {
     void equalBtnAction(ActionEvent event) {
         if(!mainConfig.isIgnorePastProperty()){
             equalModeBtn.setSelected(false);
-            new DialogMaker(rootPane).creatMessageDialog("且慢","该模式不能在“被点过的还要点”这种情况下使用，若要使用，请开启“这次点过就不点了”模式。");
-        }
-    }
-
-    @FXML
-    void showTaoluMode(ActionEvent event) {
-        new DialogMaker(rootPane).creatMessageDialog("啥玩意？","旧称“套路模式”，勾选后会使被点过的名字在挑选列表中多出现4~5次，增加了再次被点中的几率。\n注意：仅在勾选此模式后点中的名字才会被多增加4~5次，不勾选时选中的名字不受影响。\n退出后会自动重置，不影响下次使用。");
-    }
-
-    @FXML
-    void clearTaoluList(ActionEvent event) {
-        new DialogMaker(rootPane).creatDialogWithOKAndCancel("真的吗？","真的要重置吗？",(e)-> nameData.clearTaoluedName());
-    }
-
-    @FXML
-    void taoluModeBtn_Aciton(ActionEvent event) {
-        if(mainConfig.isIgnorePastProperty()){
-            taoluModeBtn.setSelected(false);
-            new DialogMaker(rootPane).creatMessageDialog("且慢","该模式不能“这次点过就不点了”这种情况下使用，若要使用，请开启“被点过的还要点”模式。");
+            new DialogMaker(rootPane).creatMessageDialog("且慢","无法在“概率均分”的模式下使用，如需使用请在“人人有份”模式下启用。");
         }
     }
 

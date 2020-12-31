@@ -14,15 +14,13 @@ import me.hety.dogename.main.sayings.Hitokoto;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
-import java.io.File;
 import java.util.Random;
 
 public class Main extends Application {
 
     Logger log = LogManager.getLogger();
 
-    public static void main(String[] args){System.out.println("Received "+args.length+" args");launch(args);}
+    public static void main(String[] args){ launch(args);}
 
     @Override
     public void start(Stage primaryStage) {
@@ -55,12 +53,14 @@ public class Main extends Application {
 
         mainInterfaceController.setImg(DataReleaser.getMainPicStream());
 
-        primaryStage.setOnCloseRequest(event -> configLoader.writeAllConfigToFile("files"+ File.separator+"Config.json","files"+ File.separator+"VoiceConfig.json"));
-
-        if (new Random().nextBoolean()) {
-            new Gushici().showGushici(mainInterfaceController.getRootPane(),mainInterfaceController.getTopBar());
-        }else {
-            new Hitokoto().showHitokoto(mainInterfaceController.getRootPane(),mainInterfaceController.getTopBar());
+        primaryStage.setOnCloseRequest(event -> configLoader.writeAllConfigToFile(configLoader.getMainConfigLocation(),configLoader.getVoiceConfigLocation()));
+        
+        if (mainInterfaceController.getMainConfig().isShowSaying()) {
+            if (new Random().nextBoolean()){
+                new Gushici().showGushici(mainInterfaceController.getRootPane(),mainInterfaceController.getTopBar());
+            }else {
+                new Hitokoto().showHitokoto(mainInterfaceController.getRootPane(),mainInterfaceController.getTopBar());
+            }
         }
 
         startMessageThread(mainInterfaceController);

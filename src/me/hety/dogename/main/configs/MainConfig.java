@@ -1,5 +1,6 @@
 package me.hety.dogename.main.configs;
 
+import com.google.gson.annotations.Expose;
 import javafx.beans.property.*;
 
 public class MainConfig {
@@ -7,6 +8,13 @@ public class MainConfig {
     // ConfigValuesBean configValuesBean =new ConfigValuesBean();
 
     // ---------------------- Default values ---------------------------------------------------------
+
+    @Expose
+    private final String NEWEST_CONFIG_VERSION = "2";
+
+    private String currentConfigVersion = null;
+
+    @Expose
     public final boolean DEFAULT_NAME_CHOOSE = true;
 
     public final int METHOD_NAME = 0; // 名字挑选法
@@ -19,11 +27,12 @@ public class MainConfig {
 
     public final boolean DEFAULT_IGNORE_PAST = true; // 默认忽略已经点过的名字:ture
 
-    public final boolean DEFAULT_TAOLU_MODE = false; // 默认关闭"套路模式"
     public final boolean DEFAULT_EQUAL_MODE = true; // 默认开启"机会均等"
 
     public final boolean DEFAULT_NEW_ALGO = true; // 默认使用新算法"Java sec random"
     public final boolean DEFAULT_VOICE_PLAY = true; // 默认使用语音播报
+
+    public final boolean DEFAULT_SHOW_SAYING = true;
 
     // ----------------------Properties----------------------------------------------------------------
 
@@ -40,11 +49,12 @@ public class MainConfig {
     private SimpleStringProperty minNumberProperty; // 最小值
     private SimpleStringProperty maxNumberProperty; // 最大值
 
-    private SimpleBooleanProperty taoluModeProperty; // 是否开启"套路模式"
     private SimpleBooleanProperty equalModeProperty; // 是否开启"机会均等"
 
     private SimpleBooleanProperty newAlgoProperty; // 是否使用新算法
     private SimpleBooleanProperty voicePlayProperty; // 是否使用语音播报
+
+    private SimpleBooleanProperty showSaying;
 
     // -------------------------- 初始化 --------------------------------------------------------------
     public MainConfig() {
@@ -61,11 +71,14 @@ public class MainConfig {
         minNumberProperty = new SimpleStringProperty("0");
         maxNumberProperty = new SimpleStringProperty("10");
 
-        taoluModeProperty = new SimpleBooleanProperty(DEFAULT_TAOLU_MODE);
         equalModeProperty = new SimpleBooleanProperty(DEFAULT_EQUAL_MODE);
 
         newAlgoProperty = new SimpleBooleanProperty(DEFAULT_NEW_ALGO);
         voicePlayProperty = new SimpleBooleanProperty(DEFAULT_VOICE_PLAY);
+
+        showSaying = new SimpleBooleanProperty(DEFAULT_SHOW_SAYING);
+
+        currentConfigVersion = NEWEST_CONFIG_VERSION;
     }
 
     // -------------------------- Getters and Setters ---------------------------------------------
@@ -166,18 +179,6 @@ public class MainConfig {
         this.maxNumberProperty.set(maxNumberProperty);
     }
 
-    public boolean isTaoluModeProperty() {
-        return taoluModeProperty.get();
-    }
-
-    public SimpleBooleanProperty taoluModePropertyProperty() {
-        return taoluModeProperty;
-    }
-
-    public void setTaoluModeProperty(boolean taoluModeProperty) {
-        this.taoluModeProperty.set(taoluModeProperty);
-    }
-
     public boolean isEqualModeProperty() {
         return equalModeProperty.get();
     }
@@ -213,4 +214,29 @@ public class MainConfig {
     public void setVoicePlayProperty(boolean voicePlayProperty) {
         this.voicePlayProperty.set(voicePlayProperty);
     }
+
+    public boolean isShowSaying() {
+        return showSaying.get();
+    }
+
+    public SimpleBooleanProperty showSayingProperty() {
+        return showSaying;
+    }
+
+    public void setShowSaying(boolean showSaying) {
+        this.showSaying.set(showSaying);
+    }
+
+    public String getCurrentConfigVersion() {
+        return currentConfigVersion;
+    }
+
+    public void setCurrentConfigVersion(String currentConfigVersion) {
+        this.currentConfigVersion = currentConfigVersion;
+    }
+
+    public String getNewestConfigVersion() {
+        return NEWEST_CONFIG_VERSION;
+    }
+
 }

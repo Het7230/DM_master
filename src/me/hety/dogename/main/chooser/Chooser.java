@@ -47,7 +47,6 @@ public final class Chooser {
     final int UPPER_LABEL_ID = 1;
     final int UNDER_LABEL_ID = 2;
 
-    boolean taoluMode;
 
     Token token;
     VoicePlayer voicePlayer;
@@ -136,9 +135,6 @@ public final class Chooser {
 
                             upLabelText.set("→ "+chosenName+" ←");
 
-                            if(taoluMode)
-                                nameData.addTaoluedName(chosenName,5);
-
                             break;
                         }
                         case UNDER_LABEL_ID:{
@@ -146,9 +142,6 @@ public final class Chooser {
                                 upLabelText.set(upLabelText.get().replace("→ ","").replace(" ←",""));
 
                             downLabelText.set("→ "+chosenName+" ←");
-
-                            if(taoluMode)
-                                nameData.addTaoluedName(chosenName,4);
 
                             break;
                         }
@@ -303,27 +296,25 @@ public final class Chooser {
 
 
 
-    public void run(short speed,int chosenTime,boolean ignorePast,boolean equalMode,boolean taoluMode,boolean voicePlay){
+    public void run(short speed,int chosenTime,boolean ignorePast,boolean equalMode,boolean voicePlay){
 
         this.speed = speed;
         this.totalMaxCount = chosenTime;
         this.ignorePast = ignorePast;
         this.equalMode = equalMode;
-        this.taoluMode = taoluMode;
         this.voicePlay = voicePlay;
 
         isRunning=true;
         timer.start();
     }
 
-    public void run(short maxNumber,short minNumber,short speed,int chosenTime,boolean ignorePast,boolean equalMode,boolean taoluMode,boolean voicePlay){
+    public void run(short maxNumber,short minNumber,short speed,int chosenTime,boolean ignorePast,boolean equalMode,boolean voicePlay){
         this.maxNumber = maxNumber;
         this.minNumber = minNumber;
         this.speed = speed;
         this.totalMaxCount = chosenTime;
         this.ignorePast = ignorePast;
         this.equalMode = equalMode;
-        this.taoluMode = taoluMode;
         this.voicePlay = voicePlay;
 
         isRunning=true;

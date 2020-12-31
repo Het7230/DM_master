@@ -76,9 +76,6 @@ public class NameManagerPaneController extends VBox  {
                     nameData.delete(deletedName);
                     shownNameList.remove(deletedName);
 
-                    //删除套路列表中所有的名字
-                    nameData.clearTaoluedName();
-
                     nameData.saveToFile();
                     System.gc();
                 });
@@ -134,7 +131,6 @@ public class NameManagerPaneController extends VBox  {
 
                     nameData.clearNameIgnoreList();
                     nameData.clearNumberIgnoreList();
-                    nameData.clearTaoluedName();
 
                     nameData.saveToFile();
                     System.gc();

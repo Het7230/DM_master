@@ -130,7 +130,7 @@ public class MiniPaneController {
 
     private void runNameMode(Chooser chooser){
 
-        if(nameData.isEmpty(mainConfig.isTaoluModeProperty())){
+        if(nameData.isEmpty()){
             return;
         }
 
@@ -148,7 +148,6 @@ public class MiniPaneController {
                 mainConfig.getCycleTimesProperty(),
                 mainConfig.isIgnorePastProperty(),
                 mainConfig.isEqualModeProperty(),
-                mainConfig.isTaoluModeProperty(),
                 mainConfig.isVoicePlayProperty()
         );
 
@@ -186,7 +185,6 @@ public class MiniPaneController {
                 mainConfig.getCycleTimesProperty(),
                 mainConfig.isIgnorePastProperty(),
                 mainConfig.isEqualModeProperty(),
-                mainConfig.isTaoluModeProperty(),
                 mainConfig.isVoicePlayProperty()
         );
     }

@@ -16,7 +16,7 @@
          <children>
             <Pane prefHeight="50.0" prefWidth="296.0">
                <children>
-                  <JFXRadioButton fx:id="ignoreOnce" layoutX="14.0" layoutY="14.0" selected="true" text="这次点过就不点了">
+                  <JFXRadioButton fx:id="ignoreOnce" layoutX="14.0" layoutY="14.0" selected="true" text="人人有份(跳过已点过的名字)">
                      <font>
                         <Font name="Microsoft YaHei" size="17.0" />
                      </font>
@@ -25,17 +25,7 @@
             </Pane>
             <Pane prefHeight="50.0" prefWidth="296.0">
                <children>
-                  <JFXButton buttonType="RAISED" layoutX="166.0" layoutY="14.0" onAction="#showEqualMode" prefHeight="20.0" ripplerFill="#00e842" text="说明" textFill="#294f65">
-                     <font>
-                        <Font name="Microsoft YaHei" size="12.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton buttonType="RAISED" layoutX="126.0" layoutY="14.0" onAction="#clearIgnoreList" prefHeight="20.0" ripplerFill="#04d5ff" text="重置" textFill="#1797e3">
-                     <font>
-                        <Font name="Microsoft YaHei" size="12.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXCheckBox fx:id="equalModeBtn" checkedColor="#079cd7" layoutX="14.0" layoutY="11.0" onAction="#equalBtnAction" prefHeight="28.0" prefWidth="94.0" text="机会均等" unCheckedColor="#13aecf">
+                  <JFXCheckBox fx:id="equalModeBtn" checkedColor="#079cd7" layoutX="14.0" layoutY="11.0" onAction="#equalBtnAction" prefHeight="28.0" prefWidth="162.0" text="记录已点过的名字" unCheckedColor="#13aecf">
                      <font>
                         <Font name="Microsoft YaHei" size="14.0" />
                      </font>
@@ -48,32 +38,27 @@
          <children>
             <Pane prefHeight="50.0" prefWidth="296.0">
                <children>
-                  <JFXRadioButton fx:id="chooseOnce" layoutX="14.0" layoutY="14.0" text="被点过的还要点">
+                  <JFXRadioButton fx:id="chooseOnce" layoutX="14.0" layoutY="14.0" text="概率均分(不跳过已点过的名字)">
                      <font>
                         <Font name="Microsoft YaHei" size="17.0" />
                      </font>
                   </JFXRadioButton>
                </children>
             </Pane>
-            <Pane prefHeight="50.0" prefWidth="296.0">
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="286.0" spacing="1.0">
                <children>
-                  <JFXButton buttonType="RAISED" layoutX="166.0" layoutY="14.0" onAction="#showTaoluMode" prefHeight="20.0" ripplerFill="#00e842" text="说明" textFill="#294f65">
+                  <JFXButton buttonType="RAISED" onAction="#clearIgnoreList" prefHeight="30.0" prefWidth="131.0" ripplerFill="#04d5ff" style="-fx-background-color: rgba(0,0,0,0.09);" text="清空记录" textFill="#1797e3">
                      <font>
                         <Font name="Microsoft YaHei" size="12.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton buttonType="RAISED" layoutX="126.0" layoutY="14.0" onAction="#clearTaoluList" prefHeight="20.0" ripplerFill="#04d5ff" text="重置" textFill="#1797e3">
+                  <JFXButton buttonType="RAISED" layoutX="15.0" layoutY="11.0" onAction="#showEqualMode" prefHeight="30.0" prefWidth="131.0" ripplerFill="#00e842" style="-fx-background-color: rgba(0,0,0,0.09);" text="选项说明" textFill="#294f65">
                      <font>
                         <Font name="Microsoft YaHei" size="12.0" />
                      </font>
                   </JFXButton>
-                  <JFXCheckBox fx:id="taoluModeBtn" checkedColor="#079cd7" layoutX="14.0" layoutY="11.0" onAction="#taoluModeBtn_Aciton" prefHeight="28.0" prefWidth="89.0" text="娱乐模式" unCheckedColor="#13aecf">
-                     <font>
-                        <Font name="Microsoft YaHei" size="14.0" />
-                     </font>
-                  </JFXCheckBox>
                </children>
-            </Pane>
+            </HBox>
          </children>
       </HBox>
       <Line endX="592.0" />
@@ -122,7 +107,7 @@
       <Line endX="592.0" />
       <Pane prefHeight="50.0" prefWidth="593.0">
          <children>
-            <JFXCheckBox fx:id="newAlgoBtn" checkedColor="#079cd7" layoutX="14.0" layoutY="14.0" selected="true" text="使用新的随机算法(Java SecureRandom)" textFill="#2c2424" unCheckedColor="#13aecf">
+            <JFXCheckBox fx:id="newAlgoBtn" checkedColor="#079cd7" layoutX="14.0" layoutY="14.0" selected="true" text="使用Java SecureRandom随机算法" textFill="#2c2424" unCheckedColor="#13aecf">
                <font>
                   <Font name="Microsoft YaHei" size="14.0" />
                </font>
@@ -131,12 +116,17 @@
       </Pane>
       <HBox prefHeight="50.0" prefWidth="200.0" spacing="20.0">
          <children>
+            <JFXCheckBox fx:id="showSayingBtn" checkedColor="#079cd7" prefHeight="31.0" prefWidth="188.0" selected="true" text="启动时展示一言/古诗词" textFill="#2c2424" unCheckedColor="#13aecf">
+               <font>
+                  <Font name="Microsoft YaHei" size="14.0" />
+               </font>
+            </JFXCheckBox>
             <JFXCheckBox fx:id="voicePlayBtn" checkedColor="#079cd7" prefHeight="31.0" prefWidth="82.0" selected="true" text="语音播报" textFill="#2c2424" unCheckedColor="#13aecf">
                <font>
                   <Font name="Microsoft YaHei" size="14.0" />
                </font>
             </JFXCheckBox>
-            <JFXButton onAction="#showVoiceSettingsPane" prefHeight="31.0" prefWidth="76.0" text="语音设置">
+            <JFXButton onAction="#showVoiceSettingsPane" prefHeight="31.0" prefWidth="76.0" style="-fx-background-color: rgba(0,0,0,0.09);" text="语音设置">
                <font>
                   <Font name="Microsoft YaHei" size="14.0" />
                </font>

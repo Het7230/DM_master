@@ -309,10 +309,7 @@ public class NameData {
     }
 
     //------------------------------------------------------
-    public boolean isEmpty(boolean taoluMode){
-        if(taoluMode){
-            return nameList.isEmpty() && chooseList.isEmpty();
-        }
+    public boolean isEmpty(){
         return nameList.isEmpty();
     }
 
@@ -329,12 +326,6 @@ public class NameData {
     //------------------------------------------------------
     public String[] getAll(){
         return nameList.toArray(new String[0]);
-    }
-
-    //------------------------------------------------------
-    public void addTaoluedName(String taoluedName,int taoluLevel){
-        for(int i=0;i<taoluLevel;i++)
-            chooseList.add(taoluedName);
     }
 
     //------------------------------------------------------
@@ -357,7 +348,4 @@ public class NameData {
     }
 
     //------------------------------------------------------
-    public void clearTaoluedName() {
-        chooseList = new ArrayList<>();
-    }
 }
